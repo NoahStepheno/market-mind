@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vp test",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:import:howtocook": "tsx src/scripts/importHowToCook.ts",
+    "db:update:ingredients:howtocook": "tsx src/scripts/updateHowToCookIngredients.ts",
+    "db:validate:ingredient-units": "tsx src/scripts/validateRecipeIngredientUnits.ts",
+    "db:search:reindex": "tsx src/scripts/reindexRecipesToQdrant.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.0",
+    "@qdrant/js-client-rest": "^1.17.0",
+    "better-auth": "^1.6.7",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.14",
+    "jose": "^6.2.2",
+    "pino": "^10.3.1",
+    "postgres": "^3.4.9",
+    "rotating-file-stream": "^3.2.9",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vite-plus": "catalog:"
+  }
+}
