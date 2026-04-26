@@ -13,7 +13,7 @@ Expected stack:
 - Frontend framework React
 - UI component library shadcn
 - State management solution zustend
-- Css solution TailwindCSS
+- Css solution with TailwindCSS
 - API integration with backend
 
 ## Essential Commands
