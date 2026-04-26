@@ -10,11 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vp test",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:import:howtocook": "tsx src/scripts/importHowToCook.ts",
-    "db:update:ingredients:howtocook": "tsx src/scripts/updateHowToCookIngredients.ts",
-    "db:validate:ingredient-units": "tsx src/scripts/validateRecipeIngredientUnits.ts",
-    "db:search:reindex": "tsx src/scripts/reindexRecipesToQdrant.ts"
+    "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.0",

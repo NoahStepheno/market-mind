@@ -5,10 +5,10 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { HTTPException } from "hono/http-exception";
 
-import { authRoutes } from "./auth/routes.ts";
-import { AuthVariables, requireAuth } from "./auth/middleware.ts";
-import { getLogger } from "./logging/logger.ts";
-import { requestLogger } from "./logging/requestLogger.ts";
+import { authRoutes } from "./modules/auth/routes.ts";
+import { AuthVariables, requireAuth } from "./modules/auth/middleware.ts";
+import { getLogger } from "./common/logging/logger.ts";
+import { requestLogger } from "./common/logging/requestLogger.ts";
 
 const app = new Hono<AuthVariables>();
 const logger = getLogger({ module: "index" });

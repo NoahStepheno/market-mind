@@ -1,7 +1,7 @@
 import { and, eq, gt, isNull } from "drizzle-orm";
 
-import { db } from "../db/client.ts";
-import { accounts, refreshTokens, users } from "../db/schema.ts";
+import { db } from "../../common/db/client.ts";
+import { accounts, refreshTokens, users } from "../../entities/schema.ts";
 import {
   generateRefreshToken,
   getRefreshTokenTtlSeconds,
