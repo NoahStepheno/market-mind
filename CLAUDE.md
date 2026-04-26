@@ -15,8 +15,12 @@ Apply instructions in this order:
 
 The closest CLAUDE.md to the files being edited
 This root CLAUDE.md
-Referenced documentation under ./docs/rules/
 If rules conflict, the more local CLAUDE.md wins.
+Referenced documentation under ./docs/rules/
+
+## Critical docs
+
+Domain model design ./docs/designs/market-mind-domain-model.md
 
 ## Working Style
 
@@ -24,7 +28,7 @@ If rules conflict, the more local CLAUDE.md wins.
 - Prefer small, reviewable changes over broad speculative refactors.
 - Before making non-trivial architecture changes, explain the decision and tradeoff in plain language.
 - When the user asks for planning or a new feature design, write the plan into the workspace, not an external directory.
-Do not create throwaway prototype code unless the user explicitly asks for a prototype.
+  Do not create throwaway prototype code unless the user explicitly asks for a prototype.
 
 ## Documentation Placement
 
