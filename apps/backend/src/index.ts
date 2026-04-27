@@ -9,6 +9,9 @@ import { authRoutes } from "./modules/auth/routes.ts";
 import { AuthVariables, requireAuth } from "./modules/auth/middleware.ts";
 import { getLogger } from "./common/logging/logger.ts";
 import { requestLogger } from "./common/logging/requestLogger.ts";
+import { createInternalAlarmRoutes } from "./modules/alarms/internal-routes.ts";
+import { startAlarmRealtimePipeline } from "./modules/alarms/pipeline.ts";
+import { alarmRoutes } from "./modules/alarms/routes.ts";
 
 const app = new Hono<AuthVariables>();
 const logger = getLogger({ module: "index" });
@@ -65,6 +68,14 @@ app.get("/api/v1/health", (c) => {
 
 app.route("/api/v1/auth", authRoutes);
 app.get("/api/v1/me", requireAuth, (c) => c.json({ user: c.get("authUser") }));
+
+const alarmPipeline =
+  process.env.ALARM_PIPELINE_ENABLED === "false" ? null : startAlarmRealtimePipeline();
+if (alarmPipeline) {
+  app.route("/api/internal/v1", createInternalAlarmRoutes(alarmPipeline));
+}
+
+app.route("/api/v1/alarms", alarmRoutes);
 
 app.get("/", (c) => c.text("Market backend is running"));
 

@@ -137,10 +137,27 @@ WHERE symbol = $1
 
 **收益**：评估崩溃时不会出现「库已改但 outbox 未插入」的分裂；进程崩溃后内存队列中的在途任务会丢，但 **outbox 未 ACK 的行可重放**（配合 Notify 侧 `dedupe_key` 幂等，重复投递可接受）。
 
-### 5.2 消费者幂等
+### 5.2 `notifications` 通用化约定（解耦告警）
+
+为避免 `notifications` 与告警域强耦合，V1 起采用**来源抽象**而非强制 `alarm_id` 外键：
+
+- `source_type`：通知来源类型（如 `alarm`、`system`、`portfolio`；V1 实现至少支持 `alarm`）。
+- `source_id`：来源对象标识（字符串，便于承载 UUID 或未来异构主键）；可空，仅在确有来源对象时写入。
+- `user_id`、`dedupe_key`、`title`、`body`、`notify_tier`、`status`、时间戳保持不变。
+- 新增 `read_at`（可空时间戳）：`NULL` 表示未读，非 `NULL` 表示已读，用于面向用户的通知列表读态。
+
+告警链路写入 `notifications` 时固定：
+
+- `source_type = 'alarm'`
+- `source_id = alarm_id`
+
+这样可以保证后续其他业务（非告警）复用同一通知落库与投递流水，而无需被 `alarm_id` FK 约束。
+
+### 5.3 消费者幂等
 
 - 表 `notifications`（域总览 §5）写入时使用 **`dedupe_key` UNIQUE** 或 `INSERT … ON CONFLICT DO NOTHING`。
 - 推送提供商失败时：用 **进程内重试**（退避 + 上限）或将该行重新可见给 Relay；全程依赖同一 `dedupe_key` 做 `notifications` 幂等，避免用户收到重复可见通知。
+- `status` 仍表示**投递状态**（如 `pending/sent/failed`）；`read_at` 表示**用户阅读状态**，两者语义独立。
 
 ---
 
@@ -185,12 +202,12 @@ WHERE symbol = $1
 
 以下为 backend 落地顺序建议；与仓库根计划可双向链回。
 
-- [ ] **Schema**：Drizzle 迁移 `alarms`（含 `deleted_at`、partial unique 若产品需要「每用户每 symbol 一条未删告警」）、`alarm_trigger_outbox`（V1 已定）、`notifications`、`alarm_feedback`（若 V1 落库）
-- [ ] **模块**：`modules/alarms` — CRUD 路由 + Zod/JSON Schema 校验 `condition_group`（§3.2.1：单层 AND/OR、叶子数默认≤5、可配置上限）+ 列表默认 `deleted_at IS NULL`
-- [ ] **评估器**：纯函数 `evaluateGroup(condition_group, snapshot) -> boolean` + 单元测试（fixtures 来自 PRD 样例）
-- [ ] **Ingest**：内网路由 + 鉴权；将事件投递到 **按 symbol 分区** 的**内存**队列（bounded，带背压）
-- [ ] **Evaluator worker**：消费内存队列 → 加载 alarms → 事务内 UPDATE + outbox INSERT → 提交
-- [ ] **Relay**：`FOR UPDATE SKIP LOCKED` 读 outbox → 写入 **Notify 内存队列** → 更新 outbox 状态；无外部 MQ
-- [ ] **Notify worker**：消费内存队列 → `notifications` 幂等插入 → **将对应 outbox 标为已完成** → 调用 FCM/APNs（进程内重试/退避；失败时 outbox 保持未完结以便 Relay 重放 + `dedupe_key`）
-- [ ] **监控**：接入 §7 指标与告警（队列积压、评估 P95）
+- [x] **Schema**：Drizzle 迁移 `alarms`（含 `deleted_at`、partial unique 若产品需要「每用户每 symbol 一条未删告警」）、`alarm_trigger_outbox`（V1 已定）、`notifications`、`alarm_feedback`（若 V1 落库）
+- [x] **模块**：`modules/alarms` — CRUD 路由 + Zod/JSON Schema 校验 `condition_group`（§3.2.1：单层 AND/OR、叶子数默认≤5、可配置上限）+ 列表默认 `deleted_at IS NULL`
+- [x] **评估器**：纯函数 `evaluateGroup(condition_group, snapshot) -> boolean` + 单元测试（fixtures 来自 PRD 样例）
+- [x] **Ingest**：内网路由 + 鉴权；将事件投递到 **按 symbol 分区** 的**内存**队列（bounded，带背压）
+- [x] **Evaluator worker**：消费内存队列 → 加载 alarms → 事务内 UPDATE + outbox INSERT → 提交
+- [x] **Relay**：`FOR UPDATE SKIP LOCKED` 读 outbox → 写入 **Notify 内存队列** → 更新 outbox 状态；无外部 MQ
+- [x] **Notify worker**：消费内存队列 → `notifications` 幂等插入 → **将对应 outbox 标为已完成** → 调用 FCM/APNs（进程内重试/退避；失败时 outbox 保持未完结以便 Relay 重放 + `dedupe_key`）
+- [ ] **监控**：接入 §7 指标与告警（队列积压、评估 P95）_（已完成进程内指标聚合，尚未接入外部监控/告警平台）_
 - [ ] **文档**：与 `market-database` 约定 Tick 字段与 ingest 频率上限；内网 OpenAPI 片段或 `docs/rules/modules/` 下模块说明（若团队要求）
