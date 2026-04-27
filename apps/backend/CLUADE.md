@@ -34,11 +34,13 @@ vp test             # Run all tests
 src/
 ├── modules/              # Business modules
 │   ├── auth/             # auth module
+│   ├── alarms/           # alarms module
 │   └── ...
 ├── entities/             # Drizzle-orm entities
 │   └── accounts.ts       # Account entity
 │   └── refreshTokens.ts  # RefreshTokens entity
 │   └── users.ts          # User entity
+│   └── ...
 ├── common/               # Shared utilities
 │   ├── db/               # Db client
 │   ├── logging/          # Logger util
