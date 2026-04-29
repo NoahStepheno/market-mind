@@ -2,6 +2,8 @@ export { accounts } from "./accounts.ts";
 export { alarmFeedback } from "./alarm_feedback.ts";
 export { alarmTriggerOutbox } from "./alarm_trigger_outbox.ts";
 export { alarms } from "./alarms.ts";
+export { chatMessages } from "./chat_messages.ts";
+export { chatSessions } from "./chat_sessions.ts";
 export * from "./enums.ts";
 export { notifications } from "./notifications.ts";
 export { refreshTokens } from "./refreshTokens.ts";

@@ -13,6 +13,8 @@ export function normalizeSymbol(raw: string): string {
   return raw.trim();
 }
 
+type AlarmInsertExecutor = Pick<typeof db, "insert">;
+
 export async function listAlarmsForUser(userId: string) {
   return db
     .select()
@@ -38,10 +40,12 @@ export async function createAlarm(input: {
   enabled?: boolean;
   notifyLabel?: string | null;
   notifyTier?: "standard" | "emphasis";
+  tx?: AlarmInsertExecutor;
 }) {
   assertConditionGroupLimits(input.conditionGroup);
   const symbol = normalizeSymbol(input.symbol);
-  const [row] = await db
+  const executor = input.tx ?? db;
+  const [row] = await executor
     .insert(alarms)
     .values({
       userId: input.userId,

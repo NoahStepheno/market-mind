@@ -11,3 +11,7 @@ export const alarmOutboxStatusEnum = pgEnum("alarm_outbox_status", [
 ]);
 
 export const alarmFeedbackRatingEnum = pgEnum("alarm_feedback_rating", ["helpful", "not_helpful"]);
+
+export const chatMessageRoleEnum = pgEnum("chat_message_role", ["user", "assistant", "system"]);
+
+export const chatMessageStatusEnum = pgEnum("chat_message_status", ["streaming", "done"]);

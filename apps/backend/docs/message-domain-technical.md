@@ -269,44 +269,44 @@ V1.5 可加：
 ### Phase 0 — 基础准备
 
 - [x] 聊天域模块命名确定为：`modules/chat`
-- [ ] 在 `src/index.ts` 预留 `/chat` 路由注册位
-- [ ] 定义统一错误码与日志字段（requestId/sessionId/messageId）
+- [x] 在 `src/index.ts` 预留 `/chat` 路由注册位
+- [x] 定义统一错误码与日志字段（requestId/sessionId/messageId）
 
 ### Phase 1 — 数据层
 
-- [ ] 新增 `chat_sessions` Drizzle 实体（含 `deleted_at`）
-- [ ] 新增 `chat_messages` Drizzle 实体（`blocks` JSONB）
-- [ ] 将新实体接入 `src/entities/schema.ts`
-- [ ] 补充 SQL 注释块（遵守 backend migration 约定）
-- [ ] 为会话列表与消息时间线建立索引
+- [x] 新增 `chat_sessions` Drizzle 实体（含 `deleted_at`）
+- [x] 新增 `chat_messages` Drizzle 实体（`blocks` JSONB）
+- [x] 将新实体接入 `src/entities/schema.ts`
+- [x] 补充 SQL 注释块（遵守 backend migration 约定）
+- [x] 为会话列表与消息时间线建立索引
 
 ### Phase 2 — 基础 API
 
-- [ ] 实现 `POST /chat/sessions`
-- [ ] 实现 `GET /chat/sessions`（cursor 分页）
-- [ ] 实现 `GET /chat/sessions/:id/messages`（cursor 分页）
-- [ ] 补齐 Zod 请求/响应 schema 与错误映射
+- [x] 实现 `POST /chat/sessions`
+- [x] 实现 `GET /chat/sessions`（cursor 分页）
+- [x] 实现 `GET /chat/sessions/:id/messages`（cursor 分页）
+- [x] 补齐 Zod 请求/响应 schema 与错误映射
 
 ### Phase 3 — 发消息与流式
 
-- [ ] 实现 `POST /chat/sessions/:id/messages`（写 user + assistant streaming 壳）
-- [ ] 实现 `GET /chat/sessions/:id/stream` SSE 输出
-- [ ] 建立 block 状态机（text/ui）
-- [ ] 流完成后持久化 `assistant.status=done` + 完整 `blocks`
-- [ ] 失败路径返回 `error` 事件并保证数据一致
+- [x] 实现 `POST /chat/sessions/:id/messages`（写 user + assistant streaming 壳）
+- [x] 实现 `GET /chat/sessions/:id/stream` SSE 输出
+- [x] 建立 block 状态机（text/ui）
+- [x] 流完成后持久化 `assistant.status=done` + 完整 `blocks`
+- [x] 失败路径返回 `error` 事件并保证数据一致
 
 ### Phase 4 — 上下文策略
 
-- [ ] 落地 `context-policy.ts`（滑窗 + budget）
-- [ ] 实现历史冻结 UIBlock 占位降级策略
-- [ ] 保证 `draft_current` 永不降级
+- [x] 落地 `context-policy.ts`（滑窗 + budget）
+- [x] 实现历史冻结 UIBlock 占位降级策略
+- [x] 保证 `draft_current` 永不降级
 - [ ]（可选）接入告警域摘要查询 `alarms_context`
 
 ### Phase 5 — 确认创建编排
 
 - [x] 确认采用方案 B，并固化接口文档
-- [ ] 实现 `POST /chat/sessions/:id/confirm-alarm` 转发到 `POST /alarms`
-- [ ] 创建成功后补一条聊天系统消息（含 `alarm_id`）
+- [x] 实现 `POST /chat/sessions/:id/confirm-alarm` 转发到 `POST /alarms`
+- [x] 创建成功后补一条聊天系统消息（含 `alarm_id`）
 
 ### Phase 6 — 质量与运维
 
@@ -314,7 +314,7 @@ V1.5 可加：
 - [ ] 增加集成测试：鉴权隔离、成功链路、错误链路
 - [ ] 增加契约测试：UIBlock 与 alarms 入参映射
 - [ ] 暴露指标并接入监控告警
-- [ ] 执行 `vp lint` 与 `vp test`，修复新增问题
+- [x] 执行 `vp lint` 与 `vp test`，修复新增问题
 
 ### Phase 7 — V1.5（可选增强）
 

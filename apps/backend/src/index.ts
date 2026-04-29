@@ -12,6 +12,8 @@ import { requestLogger } from "./common/logging/requestLogger.ts";
 import { createInternalAlarmRoutes } from "./modules/alarms/internal-routes.ts";
 import { startAlarmRealtimePipeline } from "./modules/alarms/pipeline.ts";
 import { alarmRoutes } from "./modules/alarms/routes.ts";
+import { chatRoutes } from "./modules/chat/routes.ts";
+import { createInternalChatRoutes } from "./modules/chat/internal-routes.ts";
 
 const app = new Hono<AuthVariables>();
 const logger = getLogger({ module: "index" });
@@ -74,8 +76,10 @@ const alarmPipeline =
 if (alarmPipeline) {
   app.route("/api/internal/v1", createInternalAlarmRoutes(alarmPipeline));
 }
+app.route("/api/internal/v1", createInternalChatRoutes());
 
 app.route("/api/v1/alarms", alarmRoutes);
+app.route("/api/v1/chat", chatRoutes);
 
 app.get("/", (c) => c.text("Market backend is running"));
 
