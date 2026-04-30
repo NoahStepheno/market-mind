@@ -1,0 +1,28 @@
+<svg width="100%" viewBox="70 70 260 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- pulse rings -->
+  <circle cx="200" cy="200" r="130" fill="none" stroke="#00C897" stroke-width="1" opacity="0.12"/>
+  <circle cx="200" cy="200" r="100" fill="none" stroke="#00C897" stroke-width="1.2" opacity="0.22"/>
+  <circle cx="200" cy="200" r="70" fill="none" stroke="#00C897" stroke-width="1.5" opacity="0.38"/>
+
+  <!-- candle 1: up / green (left) -->
+  <line x1="158" y1="163" x2="158" y2="178" stroke="#00C897" stroke-width="3" stroke-linecap="round"/>
+  <rect x="149" y="178" width="18" height="30" rx="3" fill="#00C897"/>
+  <line x1="158" y1="208" x2="158" y2="224" stroke="#00C897" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- candle 2: down / red (middle) -->
+  <line x1="200" y1="148" x2="200" y2="165" stroke="#FF4D6A" stroke-width="3" stroke-linecap="round"/>
+  <rect x="191" y="165" width="18" height="38" rx="3" fill="#FF4D6A"/>
+  <line x1="200" y1="203" x2="200" y2="222" stroke="#FF4D6A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- candle 3: down / red (right) -->
+  <line x1="242" y1="136" x2="242" y2="154" stroke="#FF4D6A" stroke-width="3" stroke-linecap="round"/>
+  <rect x="233" y="154" width="18" height="46" rx="3" fill="#FF4D6A"/>
+  <line x1="242" y1="200" x2="242" y2="220" stroke="#FF4D6A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- signal arcs -->
+  <path d="M260 158 Q275 142 260 126" fill="none" stroke="#00C897" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M266 163 Q286 142 266 121" fill="none" stroke="#00C897" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- signal dot -->
+  <circle cx="276" cy="142" r="4" fill="#00C897"/>
+</svg>

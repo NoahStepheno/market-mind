@@ -17,6 +17,9 @@ export function LoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-apple-parchment px-apple-lg font-apple-text">
       <div className="w-full max-w-[400px] space-y-apple-xxl">
         <div className="space-y-apple-sm text-center">
+          <div className="mx-auto flex h-[120px] w-[120px] items-center justify-center rounded-[22px] bg-[#0D1B2A]">
+            <img src="/logo.svg" alt="market logo" className="h-full w-full" />
+          </div>
           <h1 className="font-apple-display text-[28px] font-semibold leading-[1.07] tracking-[-0.28px] text-apple-ink sm:text-[34px] sm:tracking-[-0.374px]">
             market
           </h1>

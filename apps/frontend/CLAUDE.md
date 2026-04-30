@@ -4,9 +4,10 @@
 
 The Market Frontend is used for client to manage alarm settings and notifications.
 
-## Relative
+## Critical Rules
 
 - UI Design System `apps/frontend/docs/DESIGN-apple.md`
+- The text in all product should be Chineses.
 
 ## Technology Stack
 

@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-30T00:00:00Z",
+  "title": "Design System: Market",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "canonical": "#0066cc",
+        "tonalRamp": [
+          "#002247",
+          "#003366",
+          "#004d8a",
+          "#0066cc",
+          "#1a80e0",
+          "#3399f0",
+          "#66b3ff",
+          "#99ccff"
+        ]
+      },
+      "primary-focus": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "canonical": "#0071e3",
+        "tonalRamp": [
+          "#002a52",
+          "#003d73",
+          "#005599",
+          "#0071e3",
+          "#1a8bff",
+          "#4da6ff",
+          "#80c2ff",
+          "#b3d9ff"
+        ]
+      },
+      "primary-on-dark": {
+        "role": "primary",
+        "displayName": "Sky Link Blue",
+        "canonical": "#2997ff",
+        "tonalRamp": [
+          "#0a3366",
+          "#0f4d8a",
+          "#1566ad",
+          "#2997ff",
+          "#4dabff",
+          "#80c2ff",
+          "#b3d9ff",
+          "#e0efff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "#1d1d1f",
+        "tonalRamp": [
+          "#000000",
+          "#0d0d0e",
+          "#1d1d1f",
+          "#333333",
+          "#555555",
+          "#7a7a7a",
+          "#cccccc",
+          "#f5f5f7"
+        ]
+      },
+      "parchment": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "canonical": "#f5f5f7",
+        "tonalRamp": [
+          "#2a2a2c",
+          "#404042",
+          "#5c5c5e",
+          "#7a7a7c",
+          "#999999",
+          "#c0c0c2",
+          "#e0e0e2",
+          "#f5f5f7"
+        ]
+      },
+      "surface-tile-1": {
+        "role": "neutral",
+        "displayName": "Near-Black Tile",
+        "canonical": "#272729",
+        "tonalRamp": [
+          "#000000",
+          "#0e0e10",
+          "#1a1a1c",
+          "#272729",
+          "#3a3a3c",
+          "#555557",
+          "#8a8a8c",
+          "#bdbdc0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "hero-display": {
+        "displayName": "Hero Display",
+        "purpose": "Hero headlines only. The signature tight tracking."
+      },
+      "display-lg": {
+        "displayName": "Display Large",
+        "purpose": "Section headlines atop content tiles."
+      },
+      "display-md": {
+        "displayName": "Display Medium",
+        "purpose": "Section sub-heads."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Tile sub-copy and feature descriptions."
+      },
+      "tagline": {
+        "displayName": "Tagline",
+        "purpose": "Sub-section taglines and nav category names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default paragraph. The brand reading pace at 17px."
+      },
+      "body-strong": {
+        "displayName": "Body Strong",
+        "purpose": "Inline strong emphasis."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Secondary captions, utility labels."
+      },
+      "fine-print": {
+        "displayName": "Fine Print",
+        "purpose": "Legal text, footer copy, timestamps."
+      }
+    },
+    "shadows": [
+      {
+        "name": "product-shadow",
+        "value": "rgba(0, 0, 0, 0.22) 3px 5px 30px 0",
+        "purpose": "The single shadow. Product imagery resting on a surface only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "press-scale",
+        "value": "transform: scale(0.95)",
+        "purpose": "System-wide press/active state for all buttons."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for state transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px", "purpose": "Small phone" },
+      { "name": "md", "value": "640px", "purpose": "Phone" },
+      { "name": "lg", "value": "834px", "purpose": "Tablet landscape / nav collapse" },
+      { "name": "xl", "value": "1068px", "purpose": "Small desktop" },
+      { "name": "2xl", "value": "1440px", "purpose": "Content lock width" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The signature Apple-style pill CTA. Action Blue background, single accent color.",
+      "html": "<button class=\"ds-btn-primary\">操作</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #0066cc; color: #ffffff; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.0; letter-spacing: -0.374px; border-radius: 9999px; padding: 11px 22px; min-height: 44px; border: none; cursor: pointer; transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: #0071e3; } .ds-btn-primary:active { transform: scale(0.95); } .ds-btn-primary:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Pill Button",
+      "kind": "button",
+      "refersTo": "button-secondary-pill",
+      "description": "Ghost pill variant. Transparent with Action Blue text and border. Paired with primary.",
+      "html": "<button class=\"ds-btn-secondary\">了解更多</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #0066cc; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.0; letter-spacing: -0.374px; border: 1px solid #0066cc; border-radius: 9999px; padding: 11px 22px; min-height: 44px; cursor: pointer; transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s; } .ds-btn-secondary:hover { background: rgba(0, 102, 204, 0.06); } .ds-btn-secondary:active { transform: scale(0.95); } .ds-btn-secondary:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }"
+    },
+    {
+      "name": "Dark Utility Button",
+      "kind": "button",
+      "refersTo": "button-dark-utility",
+      "description": "Compact utility button for nav actions. Near-black fill with white text.",
+      "html": "<button class=\"ds-btn-utility\">登录</button>",
+      "css": ".ds-btn-utility { display: inline-flex; align-items: center; justify-content: center; background: #1d1d1f; color: #ffffff; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.224px; border-radius: 8px; padding: 8px 15px; border: none; cursor: pointer; transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-utility:hover { opacity: 0.85; } .ds-btn-utility:active { transform: scale(0.95); } .ds-btn-utility:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "Pill-shaped search input matching the CTA grammar.",
+      "html": "<div class=\"ds-input-wrap\"><svg class=\"ds-input-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg><input class=\"ds-input-search\" type=\"text\" placeholder=\"搜索\" /></div>",
+      "css": ".ds-input-wrap { position: relative; display: inline-flex; align-items: center; } .ds-input-icon { position: absolute; left: 16px; color: #7a7a7a; pointer-events: none; } .ds-input-search { background: #ffffff; color: #1d1d1f; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.374px; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 9999px; padding: 12px 20px 12px 40px; height: 44px; outline: none; transition: border-color 0.15s; } .ds-input-search::placeholder { color: #7a7a7a; } .ds-input-search:focus { border-color: #0066cc; box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.15); }"
+    },
+    {
+      "name": "Utility Card",
+      "kind": "card",
+      "refersTo": "utility-card",
+      "description": "Standard content card with hairline border and large radius. No shadow.",
+      "html": "<div class=\"ds-card\">\n  <div class=\"ds-card-image\">\n    <img src=\"https://placehold.co/200x200\" alt=\"\" />\n  </div>\n  <div class=\"ds-card-body\">\n    <h3 class=\"ds-card-title\">茅台</h3>\n    <p class=\"ds-card-price\">￥1,800.00</p>\n    <a class=\"ds-card-link\" href=\"#\">查看详情</a>\n  </div>\n</div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; padding: 24px; } .ds-card-image { border-radius: 8px; overflow: hidden; margin-bottom: 12px; } .ds-card-image img { display: block; width: 100%; height: auto; } .ds-card-body { display: flex; flex-direction: column; gap: 4px; } .ds-card-title { font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 600; line-height: 1.24; letter-spacing: -0.374px; color: #1d1d1f; margin: 0; } .ds-card-price { font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.374px; color: #1d1d1f; margin: 0; } .ds-card-link { font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 400; color: #0066cc; text-decoration: none; } .ds-card-link:hover { text-decoration: underline; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "footer",
+      "description": "Global top navigation. Pure black background, minimal height, fine-print text.",
+      "html": "<nav class=\"ds-nav\">\n  <div class=\"ds-nav-inner\">\n    <span class=\"ds-nav-brand\">Market</span>\n    <div class=\"ds-nav-links\">\n      <a class=\"ds-nav-link\" href=\"#\">提醒</a>\n      <a class=\"ds-nav-link\" href=\"#\">设置</a>\n    </div>\n  </div>\n</nav>",
+      "css": ".ds-nav { background: #000000; height: 44px; display: flex; align-items: center; } .ds-nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 24px; } .ds-nav-brand { color: #ffffff; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; letter-spacing: -0.12px; } .ds-nav-links { display: flex; gap: 20px; } .ds-nav-link { color: #ffffff; font-family: \"SF Pro Text\", system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; letter-spacing: -0.12px; text-decoration: none; opacity: 0.8; } .ds-nav-link:hover { opacity: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Workshop",
+    "overview": "Market is a precision instrument disguised as an Apple product page. The design borrows Apple's reverence for whitespace, typographic discipline, and the single-accent grammar, then bends them toward a financial tool's seriousness. The result is neither a cold trading terminal nor a warm lifestyle app. It is a calm workshop: well-lit, organized, where every tool is exactly where you need it and nothing shouts for attention.",
+    "keyCharacteristics": [
+      "One accent color (Action Blue #0066cc) carries every interactive element.",
+      "Parchment (#f5f5f7) as the default canvas, not pure white.",
+      "SF Pro Display at 600 weight with negative letter-spacing for all display headlines.",
+      "Body copy at 17px, not 16px. The extra pixel sets a reading pace.",
+      "Full-pill radius reserved for primary actions only.",
+      "Zero shadows on UI chrome. Elevation from surface-color change.",
+      "Chinese text for all product-facing copy."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Action Blue is the only saturated color on any surface. Its presence signals interactivity. If a second accent color is introduced, the system loses its singular voice.",
+        "section": "colors"
+      },
+      {
+        "name": "The 17px Body Rule",
+        "body": "Body copy runs at 17px, not 16px. The extra pixel sets a reading pace that says 'consider this carefully.' Never reduce to 16px.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-500 Rule",
+        "body": "The weight ladder is 300 / 400 / 600. Weight 500 is forbidden. Mid-weight emphasis always uses 600.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "Shadows are reserved for product imagery only. If a shadow appears on a button, card, or text, it is a bug.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Action Blue (#0066cc) for every interactive element.",
+      "Do set headlines in SF Pro Display 600 with negative letter-spacing.",
+      "Do run body copy at 17px / 400 / 1.47 line-height.",
+      "Do use Parchment (#f5f5f7) as the default canvas.",
+      "Do apply transform: scale(0.95) as the press state on every button.",
+      "Do use full-pill radius (9999px) for primary actions.",
+      "Do write all product-facing text in Chinese."
+    ],
+    "donts": [
+      "Don't introduce a second accent color.",
+      "Don't add shadows to cards, buttons, or text.",
+      "Don't use decorative gradients.",
+      "Don't set body copy at weight 500.",
+      "Don't use border-left/right greater than 1px as colored accent stripes.",
+      "Don't use background-clip: text with gradient backgrounds.",
+      "Don't create identical card grids repeated endlessly.",
+      "Don't let the interface resemble traditional broker apps (Tonghuashun, East Money).",
+      "Don't introduce social features, comment threads, or leaderboards.",
+      "Don't use Sky Link Blue (#2997ff) on light surfaces."
+    ]
+  }
+}
