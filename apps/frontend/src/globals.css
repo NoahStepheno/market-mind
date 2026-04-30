@@ -10,7 +10,42 @@
     --font-heading: var(--font-sans);
     --font-sans: "Figtree Variable", sans-serif;
   }
+
+  /* Apple Design Tokens */
+  .font-apple-display {
+    font-family:
+      "SF Pro Display",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
+  .font-apple-text {
+    font-family:
+      "SF Pro Text",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
+
   :root {
+    --apple-primary: #0066cc;
+    --apple-primary-focus: #0071e3;
+    --apple-primary-on-dark: #2997ff;
+    --apple-ink: #1d1d1f;
+    --apple-body-on-dark: #ffffff;
+    --apple-body-muted: #cccccc;
+    --apple-ink-muted-80: #333333;
+    --apple-ink-muted-48: #7a7a7a;
+    --apple-canvas: #ffffff;
+    --apple-parchment: #f5f5f7;
+    --apple-surface-tile-1: #272729;
+    --apple-hairline: #e0e0e0;
+    --apple-divider-soft: #f0f0f0;
+    --apple-on-primary: #ffffff;
+    --apple-on-dark: #ffffff;
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -78,7 +113,8 @@
     --sidebar-ring: oklch(0.556 0 0);
   }
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
   }
   body {
     @apply bg-background text-foreground;
