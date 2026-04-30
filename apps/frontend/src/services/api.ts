@@ -41,9 +41,9 @@ async function performRefresh(refreshToken: string): Promise<string> {
 async function getValidAccessToken(): Promise<string | null> {
   const { accessToken, refreshToken, tokenExpiresAt } = useAuth.getState();
 
-  if (!accessToken || !refreshToken) return null;
+  if (!refreshToken) return null;
 
-  if (tokenExpiresAt && Date.now() > tokenExpiresAt - 60_000) {
+  if (!accessToken || (tokenExpiresAt && Date.now() > tokenExpiresAt - 60_000)) {
     if (!refreshPromise) {
       refreshPromise = performRefresh(refreshToken).finally(() => {
         refreshPromise = null;

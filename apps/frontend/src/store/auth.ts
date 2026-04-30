@@ -7,10 +7,10 @@ type AuthState = {
   accessToken: string | null;
   refreshToken: string | null;
   tokenExpiresAt: number | null;
-  isAuthenticated: boolean;
 };
 
 type AuthActions = {
+  isAuthenticated: () => boolean;
   setAuth: (user: User, tokens: AuthTokens) => void;
   setTokens: (tokens: AuthTokens) => void;
   clearAuth: () => void;
@@ -20,12 +20,13 @@ export type AuthStore = AuthState & AuthActions;
 
 export const useAuth = create<AuthStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       accessToken: null,
       refreshToken: null,
       tokenExpiresAt: null,
-      isAuthenticated: false,
+
+      isAuthenticated: () => !!(get().user && get().refreshToken),
 
       setAuth: (user, tokens) =>
         set({
@@ -33,7 +34,6 @@ export const useAuth = create<AuthStore>()(
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
           tokenExpiresAt: Date.now() + tokens.expiresIn * 1000,
-          isAuthenticated: true,
         }),
 
       setTokens: (tokens) =>
@@ -41,7 +41,6 @@ export const useAuth = create<AuthStore>()(
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
           tokenExpiresAt: Date.now() + tokens.expiresIn * 1000,
-          isAuthenticated: true,
         }),
 
       clearAuth: () =>
@@ -50,7 +49,6 @@ export const useAuth = create<AuthStore>()(
           accessToken: null,
           refreshToken: null,
           tokenExpiresAt: null,
-          isAuthenticated: false,
         }),
     }),
     {
