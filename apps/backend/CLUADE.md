@@ -53,6 +53,7 @@ src/
 - **Separation of Concerns**: Service layer handles business logic, Controller layer handles presentation
 - **Reusability**: Services can be used by different resolvers with different VO requirements
 - **Type Safety**: Entity types provide database-level guarantees
+- **Transaction First for DB Writes**: Any database-related write flow with multiple SQL statements (create/update/delete across one or more tables) must run inside a single Drizzle transaction to guarantee atomicity and consistency.
 
 ## Database design（至关重要）
 

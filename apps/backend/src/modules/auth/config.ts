@@ -13,6 +13,11 @@ export function getGoogleCallbackUrl(): string {
   return `${baseUrl}/api/v1/auth/google/callback`;
 }
 
+export function getWechatMpCallbackUrl(): string {
+  const baseUrl = requireEnv("BETTER_AUTH_URL").replace(/\/$/, "");
+  return `${baseUrl}/api/v1/auth/wechat/mp/callback`;
+}
+
 export const auth = betterAuth({
   secret: requireEnv("BETTER_AUTH_SECRET"),
   baseURL: requireEnv("BETTER_AUTH_URL"),
