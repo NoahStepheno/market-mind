@@ -90,8 +90,8 @@ export async function signOAuthState(): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   return new SignJWT({ nonce: randomBytes(12).toString("hex") })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
-    .setIssuer("chima-google-oauth-state")
-    .setAudience("chima-backend")
+    .setIssuer("market-google-oauth-state")
+    .setAudience("market-backend")
     .setIssuedAt(now)
     .setExpirationTime(now + 600)
     .sign(getJwtSecret());
@@ -99,7 +99,7 @@ export async function signOAuthState(): Promise<string> {
 
 export async function verifyOAuthState(state: string): Promise<void> {
   await jwtVerify(state, getJwtSecret(), {
-    issuer: "chima-google-oauth-state",
-    audience: "chima-backend",
+    issuer: "market-google-oauth-state",
+    audience: "market-backend",
   });
 }

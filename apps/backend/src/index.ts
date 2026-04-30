@@ -62,7 +62,7 @@ app.onError((error, c) => {
 
 app.get("/api/v1/health", (c) => {
   return c.json({
-    service: "chima-backend",
+    service: "market-backend",
     status: "ok",
     now: new Date().toISOString(),
   });

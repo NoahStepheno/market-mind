@@ -46,7 +46,7 @@ if (process.env.NODE_ENV !== "production") {
 export const logger = pino(
   {
     level: logLevel,
-    base: { service: "chima-backend" },
+    base: { service: "market-backend" },
     timestamp: pino.stdTimeFunctions.isoTime,
   },
   pino.multistream(streams),
