@@ -1,6 +1,6 @@
 # 聊天域（Message Domain）— Backend 技术方案
 
-**目的**：基于 `docs/designs/market-mind-message-domain.md`，给出 `apps/backend` 可直接落地的实现方案，覆盖会话与消息持久化、SSE 流式协议、草稿与确认编排、上下文裁剪和测试策略。  
+**目的**：基于 `docs/designs/market-message-domain.md`，给出 `apps/backend` 可直接落地的实现方案，覆盖会话与消息持久化、SSE 流式协议、草稿与确认编排、上下文裁剪和测试策略。  
 **范围**：仅包含聊天域后端能力；告警创建真执行保持在告警域 `POST /alarms`；不展开模型 prompt 工程细节与通知投递链路。
 
 ---
@@ -326,7 +326,7 @@ V1.5 可加：
 
 ## 12. 关联文档
 
-- 领域设计：`docs/designs/market-mind-message-domain.md`
-- 告警域设计：`docs/designs/market-mind-alarm-domain.md`
-- 总览域模型：`docs/designs/market-mind-domain-model.md`
+- 领域设计：`docs/designs/market-message-domain.md`
+- 告警域设计：`docs/designs/market-alarm-domain.md`
+- 总览域模型：`docs/designs/market-domain-model.md`
 - 告警域技术方案：`apps/backend/docs/alarm-realtime-technical.md`

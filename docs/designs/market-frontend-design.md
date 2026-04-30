@@ -1,6 +1,6 @@
-# MarketMind - Frontend Design (V1)
+# market - Frontend Design (V1)
 
-**Version**: aligned with `docs/prds/market-mind-prd.md` V1  
+**Version**: aligned with `docs/prds/market-prd.md` V1  
 **Scope**: web frontend information architecture, interaction flows, state model, API integration, and engineering conventions.  
 **Core constraint**: chat UI must use `assistant-ui`.
 

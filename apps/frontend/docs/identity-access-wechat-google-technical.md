@@ -1,6 +1,6 @@
 # 身份与访问 — 微信（内授权 / 外扫码）与 Google 登录（Frontend / PC Web）
 
-**目的**：在 `docs/designs/market-mind-identity-access-domain.md` 原则下，描述 **market-web（PC 浏览器）** 如何根据运行环境选择 **微信网页授权**、**Google 登录**，并与后端 `/api/v1/auth/*` 的会话模型对接。  
+**目的**：在 `docs/designs/market-identity-access-domain.md` 原则下，描述 **market-web（PC 浏览器）** 如何根据运行环境选择 **微信网页授权**、**Google 登录**，并与后端 `/api/v1/auth/*` 的会话模型对接。  
 **当前决策**：微信环境外的微信扫码登录因暂无可用测试账号，当前版本暂缓。
 
 **范围**：登录页交互、环境探测、重定向与回调页、令牌落库（内存 / storage 策略由现有实现决定）；**不**定义业务 API 鉴权细节（统一 `Authorization: Bearer`）。
@@ -61,7 +61,7 @@ const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
 
 ```
 ┌─────────────────────────────────────────────┐
-│  MarketMind 登录                             │
+│  market 登录                             │
 │                                             │
 │  [若 isWeChat]                              │
 │     [ 微信登录 ]  ← 唯一主按钮               │
@@ -109,7 +109,7 @@ const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
 
 ## 9. 参考
 
-- 域设计：`docs/designs/market-mind-identity-access-domain.md`
+- 域设计：`docs/designs/market-identity-access-domain.md`
 - 后端方案：`apps/backend/docs/identity-access-wechat-google-technical.md`
 - 前端视觉与组件基线：见 `apps/frontend/docs/DESIGN-apple.md`（登录页具体样式对齐该设计体系）。
 

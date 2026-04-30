@@ -1,8 +1,8 @@
 # 告警域实时评估与投递 — Backend 技术方案
 
-**目的**：在 `docs/designs/market-mind-alarm-domain.md` 的域模型与流程（§6.2–§6.4）之上，给出 **market-backend** 侧可落地的实时链路：行情/指标更新 → 按标的加载告警 → 边沿与冷却 → 异步通知与落库。
+**目的**：在 `docs/designs/market-alarm-domain.md` 的域模型与流程（§6.2–§6.4）之上，给出 **market-backend** 侧可落地的实时链路：行情/指标更新 → 按标的加载告警 → 边沿与冷却 → 异步通知与落库。
 
-**范围**：本方案描述后端与队列消费者的职责边界、数据流、并发与幂等策略；**不**展开聊天域、NL 解析、行情采集实现细节。与总览中 `notifications` 约定一致，见 `docs/designs/market-mind-domain-model.md` §5。
+**范围**：本方案描述后端与队列消费者的职责边界、数据流、并发与幂等策略；**不**展开聊天域、NL 解析、行情采集实现细节。与总览中 `notifications` 约定一致，见 `docs/designs/market-domain-model.md` §5。
 
 ---
 
@@ -192,9 +192,9 @@ WHERE symbol = $1
 
 ## 9. 文档引用
 
-- 告警域：`docs/designs/market-mind-alarm-domain.md`
-- 总览与 `notifications`：`docs/designs/market-mind-domain-model.md`
-- workspace 实现排期：`docs/plans/market-mind-alarms-technical.md`
+- 告警域：`docs/designs/market-alarm-domain.md`
+- 总览与 `notifications`：`docs/designs/market-domain-model.md`
+- workspace 实现排期：`docs/plans/market-alarms-technical.md`
 
 ---
 

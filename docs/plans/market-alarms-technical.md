@@ -1,10 +1,10 @@
-# MarketMind 智能告警 — 实现排期
+# market 智能告警 — 实现排期
 
 **告警域设计与数据契约**以设计文档为准，见：
 
-**[docs/designs/market-mind-alarm-domain.md](../designs/market-mind-alarm-domain.md)**
+**[docs/designs/market-alarm-domain.md](../designs/market-alarm-domain.md)**
 
-产品定义：`docs/prds/market-mind-prd.md`。
+产品定义：`docs/prds/market-prd.md`。
 
 ---
 

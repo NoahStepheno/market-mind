@@ -18,7 +18,7 @@ export function LoginPage() {
       <div className="w-full max-w-[400px] space-y-apple-xxl">
         <div className="space-y-apple-sm text-center">
           <h1 className="font-apple-display text-[28px] font-semibold leading-[1.07] tracking-[-0.28px] text-apple-ink sm:text-[34px] sm:tracking-[-0.374px]">
-            MarketMind
+            market
           </h1>
           <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-apple-ink-muted-48">
             Sign in to your account

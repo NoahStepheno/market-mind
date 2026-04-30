@@ -20,7 +20,7 @@ Referenced documentation under ./docs/rules/
 
 ## Critical docs
 
-Domain model design ./docs/designs/market-mind-domain-model.md
+Domain model design ./docs/designs/market-domain-model.md
 
 ## Working Style
 

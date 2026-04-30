@@ -118,7 +118,7 @@ Wrap `<App />` with `<BrowserRouter>`.
 ### `src/pages/login.tsx`
 
 - Full viewport, centered card, Parchment background
-- "MarketMind" headline in Apple display typography
+- "market" headline in Apple display typography
 - UA detection: WeChat → WeChat button only; non-WeChat → Google button
 - Store `returnUrl` in `sessionStorage` before redirect
 

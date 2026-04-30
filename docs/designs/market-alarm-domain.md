@@ -1,6 +1,6 @@
-# MarketMind — 告警域设计方案
+# market — 告警域设计方案
 
-**版本**：与 `docs/prds/market-mind-prd.md` V1 对齐  
+**版本**：与 `docs/prds/market-prd.md` V1 对齐  
 **范围**：告警域内的数据、边界、评估、通知路由与对外契约；**不包含**聊天域、行情采集、AI 解析实现。
 
 ---
@@ -125,7 +125,7 @@ PRD `AlarmSpec` 中的 `userId`、`notifyLabel`、`notifyTier` 映射至上表 `
 ### 6.4 通知模块（V1 与告警域同边界）
 
 - **路由**：`user_id` → 设备 token 列表（表结构属身份与访问域，本设计只约定依赖关系）。
-- **落库**：触达记录见 `docs/designs/market-mind-domain-model.md` §5 `notifications`。
+- **落库**：触达记录见 `docs/designs/market-domain-model.md` §5 `notifications`。
 - **标题**：若 `notify_label` 非空，与股票简称等组合（PRD 示例：`{notify_label} · {股票简称}`）。
 - **正文**：PRD 6.1 模板。
 - **`notify_tier`**：映射到系统通知渠道优先级、铃声等（PRD 6.4）；V1 不包含代拨第三方电话。
@@ -157,6 +157,6 @@ PRD `AlarmSpec` 中的 `userId`、`notifyLabel`、`notifyTier` 映射至上表 `
 
 ## 9. 参考文档
 
-- 各域划分、聊天域职责、V1 **`notifications` 表**（触达并入告警域）：`docs/designs/market-mind-domain-model.md`
-- 产品定义与 `AlarmSpec` 全文：`docs/prds/market-mind-prd.md`
-- 实现排期与 checklist：`docs/plans/market-mind-alarms-technical.md`
+- 各域划分、聊天域职责、V1 **`notifications` 表**（触达并入告警域）：`docs/designs/market-domain-model.md`
+- 产品定义与 `AlarmSpec` 全文：`docs/prds/market-prd.md`
+- 实现排期与 checklist：`docs/plans/market-alarms-technical.md`

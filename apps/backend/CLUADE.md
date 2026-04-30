@@ -73,4 +73,4 @@ src/
 
 - [Workspace CLAUDE.md](../CLAUDE.md) - Overall project guide
 - [Frontend CLAUDE.md](../frontend/CLAUDE.md) - Frontend development guide
-- [market-mind-domain-model.md](../../docs/designs/market-mind-domain-model.md) - Domain Model Design
+- [market-domain-model.md](../../docs/designs/market-domain-model.md) - Domain Model Design

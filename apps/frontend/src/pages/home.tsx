@@ -21,7 +21,7 @@ export function HomePage() {
       {/* Top bar */}
       <header className="flex items-center justify-between bg-apple-canvas px-apple-xl py-apple-sm">
         <span className="font-apple-display text-[21px] font-semibold leading-[1.19] tracking-[0.231px] text-apple-ink">
-          MarketMind
+          market
         </span>
         <div className="flex items-center gap-apple-sm">
           {user?.avatarUrl && (
