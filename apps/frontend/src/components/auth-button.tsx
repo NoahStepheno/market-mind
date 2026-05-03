@@ -21,8 +21,8 @@ export function LoginButton({ icon, label, href, className }: LoginButtonProps) 
       disabled={loading}
       className={
         "flex w-full items-center justify-center gap-3 rounded-apple-pill " +
-        "bg-apple-primary px-[22px] py-[11px] text-[17px] font-normal " +
-        "tracking-[-0.374px] text-apple-on-primary " +
+        "bg-white px-[22px] py-[11px] text-[17px] font-normal " +
+        "tracking-[-0.374px] text-apple-ink " +
         "transition-transform duration-100 active:scale-95 " +
         "disabled:pointer-events-none disabled:opacity-70 " +
         "font-apple-text min-h-[44px] " +
@@ -30,7 +30,7 @@ export function LoginButton({ icon, label, href, className }: LoginButtonProps) 
       }
     >
       {loading ? (
-        <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+        <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-apple-ink/30 border-t-apple-ink" />
       ) : (
         icon
       )}
@@ -45,7 +45,7 @@ export function GoogleLoginButton() {
   return (
     <LoginButton
       icon={<GoogleIcon />}
-      label="Continue with Google"
+      label="使用 Google 登录"
       href={`${apiBase}/api/v1/auth/google/start`}
     />
   );
@@ -55,7 +55,7 @@ export function WeChatLoginButton() {
   return (
     <LoginButton
       icon={<WeChatIcon />}
-      label="WeChat Login"
+      label="微信登录"
       href={`${apiBase}/api/v1/auth/wechat/mp/start`}
     />
   );

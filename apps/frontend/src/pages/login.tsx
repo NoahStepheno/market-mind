@@ -14,34 +14,33 @@ export function LoginPage() {
   }, [returnUrl]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-apple-parchment px-apple-lg font-apple-text">
-      <div className="w-full max-w-[400px] space-y-apple-xxl">
-        <div className="space-y-apple-sm text-center">
-          <div className="mx-auto flex h-[120px] w-[120px] items-center justify-center rounded-[22px] bg-[#0D1B2A]">
-            <img src="/logo.svg" alt="market logo" className="h-full w-full" />
+    <main className="flex min-h-screen flex-col items-center justify-center bg-[#0D1B2A] px-apple-lg font-apple-text">
+      <div className="flex w-full max-w-[400px] flex-col items-center">
+        <div className="flex flex-col items-center gap-apple-lg">
+          <img src="/logo.svg" alt="Market" className="h-[96px] w-[96px]" />
+          <div className="flex flex-col items-center gap-apple-xs">
+            <h1 className="font-apple-display text-[34px] font-semibold leading-[1.07] tracking-[-0.374px] text-apple-body-on-dark">
+              Market
+            </h1>
+            <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-apple-body-muted">
+              一句话设置股票提醒
+            </p>
           </div>
-          <h1 className="font-apple-display text-[28px] font-semibold leading-[1.07] tracking-[-0.28px] text-apple-ink sm:text-[34px] sm:tracking-[-0.374px]">
-            market
-          </h1>
-          <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-apple-ink-muted-48">
-            Sign in to your account
-          </p>
         </div>
 
-        <div className="space-y-apple-md">
+        <div className="mt-apple-xxl w-full space-y-apple-md">
           {isWeChat ? <WeChatLoginButton /> : <GoogleLoginButton />}
-
           {!isWeChat && (
             <p className="text-center text-[12px] leading-[1.0] tracking-[-0.12px] text-apple-ink-muted-48">
-              WeChat QR code login coming soon
+              微信登录即将上线
             </p>
           )}
         </div>
 
-        <p className="text-center text-[12px] leading-[1.0] tracking-[-0.12px] text-apple-ink-muted-48">
-          By continuing, you agree to our{" "}
-          <span className="text-apple-primary">Terms of Service</span> and{" "}
-          <span className="text-apple-primary">Privacy Policy</span>
+        <p className="mt-apple-xxl text-center text-[12px] leading-[1.0] tracking-[-0.12px] text-apple-ink-muted-48">
+          继续即表示你同意我们的
+          <span className="text-apple-primary-on-dark"> 服务条款 </span>和
+          <span className="text-apple-primary-on-dark"> 隐私政策 </span>
         </p>
       </div>
     </main>
