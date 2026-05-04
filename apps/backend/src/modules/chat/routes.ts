@@ -1,9 +1,11 @@
 import { Hono } from "hono";
 import { z } from "zod";
 
+import { AppError } from "../../common/errors/app-error.ts";
 import { AuthVariables, requireAuth } from "../auth/middleware.ts";
 import { conditionGroupSchema } from "../alarms/condition-group.ts";
 import { buildChatContext } from "./context-policy.ts";
+import { chatErrorCodes } from "./errors.ts";
 import { chatMetrics } from "./metrics.ts";
 import { getMessageForSession } from "./repo.ts";
 import {
@@ -97,11 +99,17 @@ chatRoutes.get("/sessions/:id/stream", async (c) => {
   const sessionId = c.req.param("id");
   const messageId = c.req.query("messageId");
   if (!messageId) {
-    return c.json({ code: 400, message: "messageId is required" }, 400);
+    throw new AppError("messageId is required", {
+      code: chatErrorCodes.INVALID_CURSOR,
+      statusCode: 400,
+    });
   }
   const message = await getMessageForSession({ userId, sessionId, messageId });
   if (!message) {
-    return c.json({ code: 404, message: "Message not found" }, 404);
+    throw new AppError("Message not found", {
+      code: chatErrorCodes.MESSAGE_NOT_FOUND,
+      statusCode: 404,
+    });
   }
   const userPrompt = "继续"; // V1 fallback; can be replaced with full model context input
   const context = buildChatContext({

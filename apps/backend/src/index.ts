@@ -3,8 +3,8 @@ import "dotenv/config";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { HTTPException } from "hono/http-exception";
 
+import { appErrorHandler } from "./common/errors/error-handler.ts";
 import { authRoutes } from "./modules/auth/routes.ts";
 import { AuthVariables, requireAuth } from "./modules/auth/middleware.ts";
 import { getLogger } from "./common/logging/logger.ts";
@@ -39,26 +39,7 @@ app.use(
 );
 app.use("/api/*", requestLogger);
 
-app.onError((error, c) => {
-  if (error instanceof HTTPException) {
-    return c.json(
-      {
-        code: error.status,
-        message: error.message,
-      },
-      error.status,
-    );
-  }
-
-  logger.error({ err: error, path: c.req.path, method: c.req.method }, "unhandled_error");
-  return c.json(
-    {
-      code: 500,
-      message: "Internal Server Error",
-    },
-    500,
-  );
-});
+app.onError(appErrorHandler);
 
 app.get("/api/v1/health", (c) => {
   return c.json({

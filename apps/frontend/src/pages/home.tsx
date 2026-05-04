@@ -13,7 +13,7 @@ export function HomePage() {
       await apiLogout(refreshToken).catch(() => {});
     }
     clearAuth();
-    navigate("/login", { replace: true });
+    await navigate("/login", { replace: true });
   };
 
   return (

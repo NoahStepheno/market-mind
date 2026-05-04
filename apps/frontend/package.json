@@ -7,7 +7,10 @@
     "build": "vp build",
     "preview": "vp preview",
     "lint": "vp lint",
-    "fmt": "vp fmt"
+    "fmt": "vp fmt",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.2.10",
@@ -23,6 +26,9 @@
     "zustand": "latest"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "@playwright/test": "^1.59.1",
+    "@seontechnologies/playwright-utils": "^4.3.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react-swc": "latest",

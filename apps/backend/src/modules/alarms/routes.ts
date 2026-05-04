@@ -1,9 +1,10 @@
 import { Hono } from "hono";
-import { HTTPException } from "hono/http-exception";
 import { z } from "zod";
 
+import { AppError } from "../../common/errors/app-error.ts";
 import { AuthVariables, requireAuth } from "../auth/middleware.ts";
 import { conditionGroupSchema } from "./condition-group.ts";
+import { alarmErrorCodes } from "./errors.ts";
 import {
   addAlarmFeedback,
   createAlarm,
@@ -77,7 +78,7 @@ alarmRoutes.get("/:id", async (c) => {
   const id = c.req.param("id");
   const row = await getAlarmForUser(userId, id);
   if (!row) {
-    throw new HTTPException(404, { message: "Alarm not found" });
+    throw new AppError("Alarm not found", { code: alarmErrorCodes.NOT_FOUND, statusCode: 404 });
   }
   return c.json({ alarm: row });
 });
@@ -95,7 +96,7 @@ alarmRoutes.patch("/:id", async (c) => {
     notifyTier: body.notifyTier,
   });
   if (!row) {
-    throw new HTTPException(404, { message: "Alarm not found" });
+    throw new AppError("Alarm not found", { code: alarmErrorCodes.NOT_FOUND, statusCode: 404 });
   }
   return c.json({ alarm: row });
 });
@@ -116,7 +117,10 @@ alarmRoutes.post("/:id/feedback", async (c) => {
   const body = FeedbackBodySchema.parse(await c.req.json());
   const row = await addAlarmFeedback({ userId, alarmId: id, rating: body.rating });
   if (!row) {
-    throw new HTTPException(404, { message: "Alarm not found" });
+    throw new AppError("Alarm not found", {
+      code: alarmErrorCodes.FEEDBACK_NOT_FOUND,
+      statusCode: 404,
+    });
   }
   return c.json({ feedback: row }, 201);
 });
