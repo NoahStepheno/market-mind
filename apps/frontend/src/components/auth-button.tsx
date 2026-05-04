@@ -21,9 +21,10 @@ export function LoginButton({ icon, label, href, className }: LoginButtonProps) 
       disabled={loading}
       className={
         "flex w-full items-center justify-center gap-3 rounded-apple-pill " +
-        "bg-white px-[22px] py-[11px] text-[17px] font-normal " +
-        "tracking-[-0.374px] text-apple-ink " +
+        "bg-apple-primary px-[22px] py-[11px] text-[17px] font-normal " +
+        "tracking-[-0.374px] text-apple-on-primary " +
         "transition-transform duration-100 active:scale-95 " +
+        "focus-visible:outline-2 focus-visible:outline-apple-primary-focus " +
         "disabled:pointer-events-none disabled:opacity-70 " +
         "font-apple-text min-h-[44px] " +
         (className ?? "")

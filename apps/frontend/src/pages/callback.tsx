@@ -30,7 +30,7 @@ export function CallbackPage() {
         });
         const returnUrl = sessionStorage.getItem("returnUrl");
         sessionStorage.removeItem("returnUrl");
-        void navigate(returnUrl || "/home", { replace: true });
+        void navigate(returnUrl || "/chat", { replace: true });
       })
       .catch(() => {
         window.history.replaceState({}, "", "/auth/callback");

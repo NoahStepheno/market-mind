@@ -45,7 +45,7 @@ development_status:
   # Epic 1: User Authentication & Foundation
   epic-1: in-progress
   1-0-project-scaffold-shared-infrastructure: done
-  1-1-google-oauth-sign-up-login: backlog
+  1-1-google-oauth-sign-up-login: done
   1-2-session-logout-invalidation: backlog
   1-3-authenticated-navigation-design-system-foundation: backlog
   epic-1-retrospective: optional

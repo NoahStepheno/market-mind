@@ -20,6 +20,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/chat" element={<Navigate to="/home" replace />} />
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>

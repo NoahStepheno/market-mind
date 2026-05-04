@@ -1,9 +1,7 @@
 export const selectors = {
   auth: {
-    emailInput: '[data-testid="auth-email-input"]',
-    passwordInput: '[data-testid="auth-password-input"]',
-    submitButton: '[data-testid="auth-submit-button"]',
-    errorMessage: '[data-testid="auth-error-message"]',
+    googleButton: 'button:has-text("Google")',
+    wechatButton: 'button:has-text("微信")',
   },
   nav: {
     header: '[data-testid="app-header"]',

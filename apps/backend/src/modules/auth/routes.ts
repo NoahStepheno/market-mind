@@ -342,11 +342,6 @@ authRoutes.post("/oauth/exchange-code", async (c) => {
   return c.json(consumeExchangeCodePayload(body.code));
 });
 
-authRoutes.post("/google/exchange-code", async (c) => {
-  const body = ExchangeCodeBodySchema.parse(await c.req.json());
-  return c.json(consumeExchangeCodePayload(body.code));
-});
-
 authRoutes.post("/refresh", async (c) => {
   const body = RefreshBodySchema.parse(await c.req.json());
   const tokenPair = await rotateRefreshToken(body.refreshToken);

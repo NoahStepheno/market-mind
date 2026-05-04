@@ -7,14 +7,14 @@ export function LoginPage() {
   const location = useLocation();
   const isWeChat = isWeChatBrowser();
 
-  const returnUrl = (location.state as { from?: string })?.from || "/home";
+  const returnUrl = (location.state as { from?: string })?.from || "/chat";
 
   useEffect(() => {
     sessionStorage.setItem("returnUrl", returnUrl);
   }, [returnUrl]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#0D1B2A] px-apple-lg font-apple-text">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-apple-surface-tile-1 px-apple-lg font-apple-text">
       <div className="flex w-full max-w-[400px] flex-col items-center">
         <div className="flex flex-col items-center gap-apple-lg">
           <img src="/logo.svg" alt="Market" className="h-[96px] w-[96px]" />
