@@ -13,6 +13,7 @@
     "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
+    "@assistant-ui/react": "^0.12.28",
     "@fontsource-variable/figtree": "^5.2.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
