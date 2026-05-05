@@ -25,3 +25,12 @@
 - E2E selectors use `:has-text()` instead of `data-testid` — text-based selectors are more fragile than test IDs. Style preference.
 - E2E tests removed all error/failure path coverage — old tests had invalid credential and error message tests; new tests are happy-path only. V1 scope.
 - `oauthLoginCodeStore` grows unboundedly if only consumption occurs — cleanup only runs during creation calls. Pre-existing.
+
+## Deferred from: code review of 1-2-session-logout-invalidation (2026-05-05)
+
+- Shared mutable `mockTx` variable across test suites in `service.test.ts` — pre-existing pattern from `upsertUserFromGoogle` tests, not introduced by this story
+- `routes.test.ts` mock type signature `vi.fn<() => Promise<boolean>>()` should include `(token: string)` parameter; missing 500 error test — cosmetic, no runtime impact
+- `handleLogout` in `home.tsx:13` uses `.catch(() => {})` silently swallowing all logout API errors — pre-existing pattern, correct UX but no logging/monitoring hook
+- No test verifying `apiFetch` 401 retry "only once" behavior — correct by code inspection, nice-to-have test
+- `revokeRefreshToken` SELECT-UPDATE race condition under concurrent calls — pre-existing code, UPDATE WHERE clause provides safety, accepted for V1 scale (<10 users)
+- Access token remains valid for 15 minutes after logout (AC2 partial gap) — known V1 limitation, Redis blocklist planned for V2

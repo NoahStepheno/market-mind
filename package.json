@@ -15,6 +15,9 @@
     "prepare": "vp config"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "happy-dom": "^20.9.0",
     "vite-plus": "catalog:"
   },
   "overrides": {

@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: "2026-05-04"
-last_updated: "2026-05-04"
+last_updated: "2026-05-05"
 project: market
 project_key: NOKEY
 tracking_system: file-system
@@ -46,7 +46,7 @@ development_status:
   epic-1: in-progress
   1-0-project-scaffold-shared-infrastructure: done
   1-1-google-oauth-sign-up-login: done
-  1-2-session-logout-invalidation: backlog
+  1-2-session-logout-invalidation: done
   1-3-authenticated-navigation-design-system-foundation: backlog
   epic-1-retrospective: optional
 

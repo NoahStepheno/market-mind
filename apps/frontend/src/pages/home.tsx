@@ -38,7 +38,7 @@ export function HomePage() {
             onClick={handleLogout}
             className="rounded-apple-sm bg-apple-ink px-[15px] py-2 text-[14px] font-normal leading-[1.29] tracking-[-0.224px] text-apple-on-dark transition-transform duration-100 active:scale-95"
           >
-            Log Out
+            退出登录
           </button>
         </div>
       </header>

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 type Props = { children: ReactNode };
 
 export function ProtectedRoute({ children }: Props) {
-  const isAuthenticated = useAuth((s) => s.isAuthenticated());
+  const isAuthenticated = useAuth((s) => !!(s.user && s.refreshToken));
   const location = useLocation();
 
   if (!isAuthenticated) {

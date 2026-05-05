@@ -1,6 +1,6 @@
 import { describe, expect, test, vi, beforeAll } from "vite-plus/test";
 
-import { upsertUserFromGoogle } from "./service.ts";
+import { upsertUserFromGoogle, revokeRefreshToken } from "./service.ts";
 
 const mockUser = {
   id: "user-uuid-1",
@@ -94,5 +94,61 @@ describe("upsertUserFromGoogle", () => {
 
     expect(user).toEqual({ ...mockUser, name: "Test User" });
     expect(mockTx.update).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("revokeRefreshToken", () => {
+  test("returns true when token is revoked successfully", async () => {
+    const storedToken = { id: "token-1", tokenHash: "some-hash", userId: "user-1" };
+    const selectChain = {
+      from: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockResolvedValue([storedToken]),
+    };
+    const updateChain = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      returning: vi.fn().mockResolvedValue([{ id: "token-1" }]),
+    };
+
+    mockTx = {
+      select: vi.fn().mockReturnValue(selectChain),
+      update: vi.fn().mockReturnValue(updateChain),
+    };
+
+    const result = await revokeRefreshToken("valid-refresh-token");
+    expect(result).toBe(true);
+    expect(mockTx.select).toHaveBeenCalled();
+    expect(mockTx.update).toHaveBeenCalled();
+  });
+
+  test("returns false for already-revoked token", async () => {
+    const selectChain = {
+      from: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockResolvedValue([]),
+    };
+
+    mockTx = {
+      select: vi.fn().mockReturnValue(selectChain),
+    };
+
+    const result = await revokeRefreshToken("revoked-token");
+    expect(result).toBe(false);
+  });
+
+  test("returns false for non-existent token", async () => {
+    const selectChain = {
+      from: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockResolvedValue([]),
+    };
+
+    mockTx = {
+      select: vi.fn().mockReturnValue(selectChain),
+    };
+
+    const result = await revokeRefreshToken("non-existent-token");
+    expect(result).toBe(false);
   });
 });

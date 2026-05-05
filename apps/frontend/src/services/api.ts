@@ -6,7 +6,7 @@ const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
 export class ApiError extends Error {
   constructor(
     public status: number,
-    public code: number,
+    public code: string | number,
     message: string,
   ) {
     super(message);
@@ -24,9 +24,10 @@ async function performRefresh(refreshToken: string): Promise<string> {
   });
 
   if (!res.ok) {
+    const err = await res.json().catch(() => ({ code: res.status, message: res.statusText }));
     useAuth.getState().clearAuth();
     window.location.href = "/login";
-    throw new ApiError(res.status, 401, "Session expired");
+    throw new ApiError(res.status, err.code, err.message);
   }
 
   const data = await res.json();

@@ -16,6 +16,6 @@ export type AuthExchangeResponse = AuthTokens & {
 };
 
 export type ApiErrorResponse = {
-  code: number;
+  code: string;
   message: string;
 };
