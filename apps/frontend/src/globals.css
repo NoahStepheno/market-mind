@@ -43,6 +43,11 @@
     --apple-divider-soft: #f0f0f0;
     --apple-on-primary: #ffffff;
     --apple-on-dark: #ffffff;
+    --apple-surface-pearl: #fafafc;
+    --apple-surface-tile-2: #2a2a2c;
+    --apple-surface-tile-3: #252527;
+    --apple-surface-black: #000000;
+    --apple-chip-translucent: #d2d2d7;
 
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);

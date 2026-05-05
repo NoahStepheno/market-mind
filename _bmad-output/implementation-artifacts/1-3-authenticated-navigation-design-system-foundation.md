@@ -1,6 +1,6 @@
 # Story 1.3: Authenticated Navigation & Design System Foundation
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -26,46 +26,46 @@ so that I can navigate between Chat, Alarms, and Settings without re-authenticat
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Complete DESIGN.md token mapping in TailwindCSS (AC: #1)
-  - [ ] 1.1 Add missing color CSS variables to `globals.css`: `--apple-surface-pearl: #fafafc`, `--apple-surface-tile-2: #2a2a2c`, `--apple-surface-tile-3: #252527`, `--apple-surface-black: #000000`, `--apple-chip-translucent: #d2d2d7`
-  - [ ] 1.2 Add missing `apple.*` color entries in `tailwind.config.js` to match: `surface-pearl`, `surface-tile-2`, `surface-tile-3`, `surface-black`, `chip-translucent`
-  - [ ] 1.3 Add typography scale to `tailwind.config.js` under `theme.extend.fontSize` — map all 12 typography tokens from DESIGN.md (hero-display through fine-print) as `[fontSize, { lineHeight, letterSpacing, fontWeight }]` tuples so they can be used as `text-hero-display`, `text-body`, etc.
-  - [ ] 1.4 Add font family tokens to `tailwind.config.js` under `theme.extend.fontFamily`: `apple-display: ["SF Pro Display", "system-ui", "-apple-system", "sans-serif"]`, `apple-text: ["SF Pro Text", "system-ui", "-apple-system", "sans-serif"]`
+- [x] Task 1: Complete DESIGN.md token mapping in TailwindCSS (AC: #1)
+  - [x] 1.1 Add missing color CSS variables to `globals.css`: `--apple-surface-pearl: #fafafc`, `--apple-surface-tile-2: #2a2a2c`, `--apple-surface-tile-3: #252527`, `--apple-surface-black: #000000`, `--apple-chip-translucent: #d2d2d7`
+  - [x] 1.2 Add missing `apple.*` color entries in `tailwind.config.js` to match: `surface-pearl`, `surface-tile-2`, `surface-tile-3`, `surface-black`, `chip-translucent`
+  - [x] 1.3 Add typography scale to `tailwind.config.js` under `theme.extend.fontSize` — map all 12 typography tokens from DESIGN.md (hero-display through fine-print) as `[fontSize, { lineHeight, letterSpacing, fontWeight }]` tuples so they can be used as `text-hero-display`, `text-body`, etc.
+  - [x] 1.4 Add font family tokens to `tailwind.config.js` under `theme.extend.fontFamily`: `apple-display: ["SF Pro Display", "system-ui", "-apple-system", "sans-serif"]`, `apple-text: ["SF Pro Text", "system-ui", "-apple-system", "sans-serif"]`
 
-- [ ] Task 2: Build GlobalNavigation component (AC: #2, #3, #4)
-  - [ ] 2.1 Create `apps/frontend/src/components/global-navigation.tsx` — a single component that renders as sticky top bar on desktop and bottom tab bar on mobile
-  - [ ] 2.2 Desktop (≥1024px): `<header>` with `bg-[#000000] h-11 sticky top-0 z-50`, content: "market" logo/wordmark left, nav items (Chat / Alarms / Settings) centered or right, logout + avatar right
-  - [ ] 2.3 Mobile (<768px): `<nav>` with `bg-[#000000] fixed bottom-0 inset-x-0 h-11 z-50`, 3 tab items with icons, active state white text, inactive muted gray
-  - [ ] 2.4 Nav items use `{typography.fine-print}` (12px/400/1.0/-0.12px) — use `text-apple-fine-print` from new typography scale
-  - [ ] 2.5 Active nav item: white text (`text-white`). Inactive: muted gray (`text-apple-body-muted`). No badges, counters, or notification icons.
-  - [ ] 2.6 Use `useLocation()` from react-router-dom to determine active route. Map: `/chat*` → Chat active, `/alarms*` → Alarms active, `/settings*` → Settings active
-  - [ ] 2.7 Add logout button in desktop nav: reuse existing "退出登录" text, use `button-dark-utility` component spec (bg-ink, text-on-dark, rounded-sm, 8px×15px padding)
-  - [ ] 2.8 Include user avatar thumbnail in desktop nav (from `useAuth((s) => s.user?.avatarUrl)`)
-  - [ ] 2.9 Responsive breakpoint: use TailwindCSS `md:` (768px) for bottom-tab display and `lg:` (1024px) for full top-bar display. At 768–1023px show top bar (tablet uses top bar per UX-DR12)
+- [x] Task 2: Build GlobalNavigation component (AC: #2, #3, #4)
+  - [x] 2.1 Create `apps/frontend/src/components/global-navigation.tsx` — a single component that renders as sticky top bar on desktop and bottom tab bar on mobile
+  - [x] 2.2 Desktop (≥1024px): `<header>` with `bg-[#000000] h-11 sticky top-0 z-50`, content: "market" logo/wordmark left, nav items (Chat / Alarms / Settings) centered or right, logout + avatar right
+  - [x] 2.3 Mobile (<768px): `<nav>` with `bg-[#000000] fixed bottom-0 inset-x-0 h-11 z-50`, 3 tab items with icons, active state white text, inactive muted gray
+  - [x] 2.4 Nav items use `{typography.fine-print}` (12px/400/1.0/-0.12px) — use `text-apple-fine-print` from new typography scale
+  - [x] 2.5 Active nav item: white text (`text-white`). Inactive: muted gray (`text-apple-body-muted`). No badges, counters, or notification icons.
+  - [x] 2.6 Use `useLocation()` from react-router-dom to determine active route. Map: `/chat*` → Chat active, `/alarms*` → Alarms active, `/settings*` → Settings active
+  - [x] 2.7 Add logout button in desktop nav: reuse existing "退出登录" text, use `button-dark-utility` component spec (bg-ink, text-on-dark, rounded-sm, 8px×15px padding)
+  - [x] 2.8 Include user avatar thumbnail in desktop nav (from `useAuth((s) => s.user?.avatarUrl)`)
+  - [x] 2.9 Responsive breakpoint: use TailwindCSS `md:` (768px) for bottom-tab display and `lg:` (1024px) for full top-bar display. At 768–1023px show top bar (tablet uses top bar per UX-DR12)
 
-- [ ] Task 3: Create AppLayout wrapper component (AC: #2)
-  - [ ] 3.1 Create `apps/frontend/src/components/app-layout.tsx` — wraps authenticated page content with GlobalNavigation + main content area
-  - [ ] 3.2 Layout structure: `<div className="min-h-screen bg-apple-parchment font-apple-text">` → `<GlobalNavigation />` → `<main>` with appropriate padding (top padding for top bar on desktop, bottom padding for tab bar on mobile)
-  - [ ] 3.3 Move the logout button from `home.tsx` header into `GlobalNavigation` (the home page header becomes obsolete)
+- [x] Task 3: Create AppLayout wrapper component (AC: #2)
+  - [x] 3.1 Create `apps/frontend/src/components/app-layout.tsx` — wraps authenticated page content with GlobalNavigation + main content area
+  - [x] 3.2 Layout structure: `<div className="min-h-screen bg-apple-parchment font-apple-text">` → `<GlobalNavigation />` → `<main>` with appropriate padding (top padding for top bar on desktop, bottom padding for tab bar on mobile)
+  - [x] 3.3 Move the logout button from `home.tsx` header into `GlobalNavigation` (the home page header becomes obsolete)
 
-- [ ] Task 4: Update routing and page structure (AC: #5, #6, #7)
-  - [ ] 4.1 Update `App.tsx` — remove the `/chat → /home` temporary redirect. Add `/chat`, `/alarms`, `/settings` routes wrapped in `<ProtectedRoute>` and `<AppLayout>`
-  - [ ] 4.2 Create placeholder pages: `apps/frontend/src/pages/chat.tsx` (empty centered content), `apps/frontend/src/pages/alarms.tsx`, `apps/frontend/src/pages/settings.tsx` — minimal placeholders with correct page title
-  - [ ] 4.3 Update root route: `/` → `<Navigate to="/chat" replace />` (remove `/home` redirect)
-  - [ ] 4.4 Keep `/home` route temporarily but redirect to `/chat` for backward compatibility
-  - [ ] 4.5 Update `home.tsx` to redirect to `/chat` or remove it if fully replaced by AppLayout
+- [x] Task 4: Update routing and page structure (AC: #5, #6, #7)
+  - [x] 4.1 Update `App.tsx` — remove the `/chat → /home` temporary redirect. Add `/chat`, `/alarms`, `/settings` routes wrapped in `<ProtectedRoute>` and `<AppLayout>`
+  - [x] 4.2 Create placeholder pages: `apps/frontend/src/pages/chat.tsx` (empty centered content), `apps/frontend/src/pages/alarms.tsx`, `apps/frontend/src/pages/settings.tsx` — minimal placeholders with correct page title
+  - [x] 4.3 Update root route: `/` → `<Navigate to="/chat" replace />` (remove `/home` redirect)
+  - [x] 4.4 Keep `/home` route temporarily but redirect to `/chat` for backward compatibility
+  - [x] 4.5 Update `home.tsx` to redirect to `/chat` or remove it if fully replaced by AppLayout
 
-- [ ] Task 5: Verify auth store and API client (AC: #5)
-  - [ ] 5.1 Verify `store/auth.ts` loads session from persisted localStorage on app start (zustand persist middleware already handles this)
-  - [ ] 5.2 Verify `apiFetch()` auto-attaches Bearer token via `getValidAccessToken()` — already implemented, confirm no regression
-  - [ ] 5.3 Verify `ProtectedRoute` redirects unauthenticated users to `/login` — already implemented in `protected-route.tsx`
+- [x] Task 5: Verify auth store and API client (AC: #5)
+  - [x] 5.1 Verify `store/auth.ts` loads session from persisted localStorage on app start (zustand persist middleware already handles this)
+  - [x] 5.2 Verify `apiFetch()` auto-attaches Bearer token via `getValidAccessToken()` — already implemented, confirm no regression
+  - [x] 5.3 Verify `ProtectedRoute` redirects unauthenticated users to `/login` — already implemented in `protected-route.tsx`
 
-- [ ] Task 6: Tests (AC: #1, #2, #3, #4)
-  - [ ] 6.1 Create `apps/frontend/src/components/global-navigation.test.tsx` — test: renders nav items, active item has white text, logout button visible
-  - [ ] 6.2 Create `apps/frontend/src/components/app-layout.test.tsx` — test: renders GlobalNavigation + children, applies correct padding
+- [x] Task 6: Tests (AC: #1, #2, #3, #4)
+  - [x] 6.1 Create `apps/frontend/src/components/global-navigation.test.tsx` — test: renders nav items, active item has white text, logout button visible
+  - [x] 6.2 Create `apps/frontend/src/components/app-layout.test.tsx` — test: renders GlobalNavigation + children, applies correct padding
 
-- [ ] Task 7: Remove home page logout button (AC: #2, cleanup)
-  - [ ] 7.1 The logout button currently in `home.tsx` header moves to `GlobalNavigation`. Update `home.tsx` to remove its header (AppLayout provides it) or redirect to `/chat`
+- [x] Task 7: Remove home page logout button (AC: #2, cleanup)
+  - [x] 7.1 The logout button currently in `home.tsx` header moves to `GlobalNavigation`. Update `home.tsx` to remove its header (AppLayout provides it) or redirect to `/chat`
 
 ## Dev Notes
 
@@ -352,10 +352,72 @@ Story 2.1 (Chat Session Management & /chat Page) will build the actual `/chat` p
 
 ### Agent Model Used
 
-{{agent_model_name_version}}
+Claude Code (glm-5)
 
 ### Debug Log References
 
+- Initial test failures due to `@/` path alias not resolving in vitest; resolved by using relative imports in test files
+- `@testing-library/react` `render()` failed with "document is not defined"; switched to `renderToString` to match existing project test pattern
+
 ### Completion Notes List
 
+- ✅ Added 5 missing CSS color variables to globals.css (surface-pearl, surface-tile-2, surface-tile-3, surface-black, chip-translucent)
+- ✅ Added 11 typography scale tokens to tailwind.config.cjs as fontSize tuples with lineHeight, letterSpacing, fontWeight
+- ✅ Added fontFamily tokens (apple-display, apple-text) to tailwind.config.cjs
+- ✅ Created GlobalNavigation component with desktop sticky top bar and mobile bottom tab bar using md: breakpoint
+- ✅ Created AppLayout wrapper component with GlobalNavigation + main content area with correct padding
+- ✅ Updated App.tsx routing: /chat, /alarms, /settings as protected routes with AppLayout; / redirects to /chat; /home redirects to /chat
+- ✅ Created placeholder pages (chat.tsx, alarms.tsx, settings.tsx) with Chinese labels
+- ✅ Verified auth store, api client, and ProtectedRoute — no changes needed, all working as expected
+- ✅ Updated home.tsx to redirect to /chat (logout button moved to GlobalNavigation)
+- ✅ All 58 unit tests pass (3 pre-existing E2E test file failures unrelated to this story)
+- ✅ vp check passes with no errors
+
 ### File List
+
+**Created:**
+
+- apps/frontend/src/components/global-navigation.tsx
+- apps/frontend/src/components/app-layout.tsx
+- apps/frontend/src/pages/chat.tsx
+- apps/frontend/src/pages/alarms.tsx
+- apps/frontend/src/pages/settings.tsx
+- apps/frontend/src/components/global-navigation.test.tsx
+- apps/frontend/src/components/app-layout.test.tsx
+
+**Modified:**
+
+- apps/frontend/src/globals.css
+- apps/frontend/tailwind.config.cjs
+- apps/frontend/src/App.tsx
+- apps/frontend/src/pages/home.tsx
+
+**Verified (no changes):**
+
+- apps/frontend/src/store/auth.ts
+- apps/frontend/src/services/api.ts
+- apps/frontend/src/components/protected-route.tsx
+
+## Change Log
+
+- 2026-05-05: Story 1-3 implementation complete — design tokens mapped, GlobalNavigation + AppLayout created, routing updated, tests added
+
+### Review Findings
+
+- [x] [Review][Defer] Mobile no logout — PO决定：移动端退出登录将添加到设置页面，留给后续Settings Story实现。`deferred, deferred to Settings page story`
+- [x] [Review][Patch] Replace text-white with text-apple-on-dark — PO决定：严格遵循UX-DR1。global-navigation.tsx中所有text-white替换为text-apple-on-dark。`source: auditor` ✅ fixed
+- [x] [Review][Dismiss] Desktop nav breakpoint 768px confirmed — PO决定：保持768px，遵循设计规格文档。当前实现正确。`source: auditor`
+- [x] [Review][Patch] h-full centering non-functional in placeholder pages — 替换为 `min-h-[calc(100vh-44px)]` 实现真正的垂直居中。`source: blind+edge` ✅ fixed
+- [x] [Review][Patch] No aria-current on active nav links — 添加 `aria-current="page"` 到活跃导航链接。`source: edge` ✅ fixed
+- [x] [Review][Patch] No focus-visible styling on nav links — 添加 `focus-visible:outline` 样式。`source: edge` ✅ fixed
+- [x] [Review][Patch] Double-click logout fires duplicate API calls — 添加 `useRef` 防抖守卫。`source: edge` ✅ fixed
+- [x] [Review][Patch] Logout button missing type="button" — 添加 `type="button"`。`source: edge` ✅ fixed
+- [x] [Review][Patch] await navigate() is misleading — 移除 `await`，改用 `void` 前缀。`source: blind+edge` ✅ fixed
+- [x] [Review][Patch] Redundant padding classes in AppLayout — 简化为 `pt-11 max-md:pb-11`。`source: blind+edge` ✅ fixed
+- [x] [Review][Patch] isActive prefix matching creates false positives — 增加检查排除其他已知导航路径的误匹配。`source: blind+edge` ✅ fixed
+- [x] [Review][Defer] Auth store hydration flash — Zustand persist hydrates asynchronously. On first render, `user` and `refreshToken` are `null` even with valid credentials in localStorage, causing a brief redirect flash to `/login`. Pre-existing from Story 1.2. `deferred, pre-existing`
+- [x] [Review][Defer] No Better-Auth session validation on app load — AC5 says "store loads session data from Better-Auth" but no mechanism validates persisted tokens on app start. Pre-existing behavior, not introduced by this change. `deferred, pre-existing`
+- [x] [Review][Defer] iOS safe area not accounted for — Mobile bottom nav uses `fixed bottom-0` without `env(safe-area-inset-bottom)`. On iPhone X+ devices, the nav bar overlaps the home indicator. Not in current scope. `deferred, pre-existing`
+- [x] [Review][Defer] HomePage export is dead code — `home.tsx` exports `HomePage` but `App.tsx` no longer imports it. The `/home` route uses plain `<Navigate>`. The file is dead code. `deferred, cleanup`
+- [x] [Review][Defer] Suspense wrapper without lazy — `<Suspense>` still wraps `<Routes>` in `App.tsx` but no route uses code splitting. Dead overhead. `deferred, cleanup`
+- [x] [Review][Defer] Active vs inactive nav link distinguishability — Active (`#ffffff`) vs inactive (`#cccccc`) on `#000000` background has only 1.6:1 contrast ratio between states. Both pass WCAG AAA individually but the visual distinction is subtle for low-vision users. Design choice, not a bug. `deferred, pre-existing`

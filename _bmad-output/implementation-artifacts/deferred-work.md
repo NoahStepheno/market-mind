@@ -34,3 +34,13 @@
 - No test verifying `apiFetch` 401 retry "only once" behavior — correct by code inspection, nice-to-have test
 - `revokeRefreshToken` SELECT-UPDATE race condition under concurrent calls — pre-existing code, UPDATE WHERE clause provides safety, accepted for V1 scale (<10 users)
 - Access token remains valid for 15 minutes after logout (AC2 partial gap) — known V1 limitation, Redis blocklist planned for V2
+
+## Deferred from: code review of story 1-3 (2026-05-05)
+
+- Auth store hydration flash — Zustand persist hydrates asynchronously, causing brief redirect to /login on first render. Pre-existing from Story 1.2.
+- No Better-Auth session validation on app load — No mechanism validates persisted tokens on app start. AC5 says "verify, not rebuild."
+- iOS safe area not accounted for — Mobile bottom nav overlaps iPhone home indicator. Not in current scope.
+- HomePage export is dead code — home.tsx exports HomePage but nothing imports it. Cleanup item.
+- Suspense wrapper without lazy — App.tsx wraps Routes in Suspense but no lazy loading exists. Dead overhead.
+- Active vs inactive nav link distinguishability — 1.6:1 contrast between states on black background. Design choice.
+- Mobile logout — PO决定添加到设置页面，留给后续Settings Story实现。不阻塞当前Story。

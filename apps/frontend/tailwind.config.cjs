@@ -59,7 +59,56 @@ module.exports = {
           "divider-soft": "var(--apple-divider-soft)",
           "on-primary": "var(--apple-on-primary)",
           "on-dark": "var(--apple-on-dark)",
+          "surface-pearl": "var(--apple-surface-pearl)",
+          "surface-tile-2": "var(--apple-surface-tile-2)",
+          "surface-tile-3": "var(--apple-surface-tile-3)",
+          "surface-black": "var(--apple-surface-black)",
+          "chip-translucent": "var(--apple-chip-translucent)",
         },
+      },
+      fontFamily: {
+        "apple-display": [
+          '"SF Pro Display"',
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
+        "apple-text": [
+          '"SF Pro Text"',
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
+      },
+      fontSize: {
+        "hero-display": [
+          "56px",
+          { lineHeight: "1.07", letterSpacing: "-0.028em", fontWeight: "600" },
+        ],
+        "display-lg": ["40px", { lineHeight: "1.1", letterSpacing: "0em", fontWeight: "600" }],
+        "display-md": [
+          "34px",
+          { lineHeight: "1.47", letterSpacing: "-0.0374em", fontWeight: "600" },
+        ],
+        lead: ["28px", { lineHeight: "1.14", letterSpacing: "0.0196em", fontWeight: "400" }],
+        tagline: ["21px", { lineHeight: "1.19", letterSpacing: "0.0231em", fontWeight: "600" }],
+        "body-strong": [
+          "17px",
+          { lineHeight: "1.24", letterSpacing: "-0.0374em", fontWeight: "600" },
+        ],
+        body: ["17px", { lineHeight: "1.47", letterSpacing: "-0.0374em", fontWeight: "400" }],
+        caption: ["14px", { lineHeight: "1.43", letterSpacing: "-0.0224em", fontWeight: "400" }],
+        "fine-print": ["12px", { lineHeight: "1.0", letterSpacing: "-0.012em", fontWeight: "400" }],
+        "button-primary": [
+          "17px",
+          { lineHeight: "1.0", letterSpacing: "-0.0374em", fontWeight: "400" },
+        ],
+        "button-utility": [
+          "14px",
+          { lineHeight: "1.29", letterSpacing: "-0.0224em", fontWeight: "400" },
+        ],
       },
       borderRadius: {
         lg: "var(--radius)",
