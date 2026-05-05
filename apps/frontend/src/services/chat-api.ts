@@ -75,11 +75,12 @@ export async function* streamSse(
   const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const token = useAuth.getState().accessToken;
 
-  const url = `${baseUrl}/api/v1/chat/sessions/${sessionId}/stream?messageId=${encodeURIComponent(messageId)}`;
+  const url = `${baseUrl}/api/v1/chat/sessions/${sessionId}/stream`;
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "text/event-stream",
+      "X-Message-Id": messageId,
     },
     signal,
   });

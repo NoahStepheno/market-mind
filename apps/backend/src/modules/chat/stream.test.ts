@@ -81,8 +81,8 @@ describe("GET /sessions/:id/stream", () => {
     mockGetMessageForSession.mockResolvedValueOnce(null);
     const app = createTestApp();
 
-    const res = await app.request("/api/v1/chat/sessions/s-1/stream?messageId=other-user-msg", {
-      headers: { Authorization: "Bearer token" },
+    const res = await app.request("/api/v1/chat/sessions/s-1/stream", {
+      headers: { Authorization: "Bearer token", "X-Message-Id": "other-user-msg" },
     });
 
     expect(res.status).toBe(404);
@@ -103,8 +103,8 @@ describe("GET /sessions/:id/stream", () => {
 
     const app = createTestApp();
 
-    const res = await app.request("/api/v1/chat/sessions/s-1/stream?messageId=msg-1", {
-      headers: { Authorization: "Bearer token" },
+    const res = await app.request("/api/v1/chat/sessions/s-1/stream", {
+      headers: { Authorization: "Bearer token", "X-Message-Id": "msg-1" },
     });
 
     expect(res.ok).toBe(true);
@@ -140,6 +140,6 @@ describe("POST /sessions/:id/messages", () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.assistantMessageId).toBe("assistant-msg-1");
-    expect(body.streamUrl).toBe("/api/v1/chat/sessions/s-1/stream?messageId=assistant-msg-1");
+    expect(body.streamUrl).toBe("/api/v1/chat/sessions/s-1/stream");
   });
 });

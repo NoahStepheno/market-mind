@@ -82,7 +82,14 @@ chatRoutes.get("/sessions/:id/messages", async (c) => {
 chatRoutes.post("/sessions/:id/messages", async (c) => {
   const userId = c.get("authUser").id;
   const sessionId = c.req.param("id");
-  const body = CreateMessageBodySchema.parse(await c.req.json());
+  const body = CreateMessageBodySchema.parse(
+    await c.req.json().catch(() => {
+      throw new AppError("Invalid JSON body", {
+        code: "VALIDATION_ERROR",
+        statusCode: 400,
+      });
+    }),
+  );
   const assistantMessageId = await createUserAndAssistantPlaceholder({
     userId,
     sessionId,
@@ -90,14 +97,14 @@ chatRoutes.post("/sessions/:id/messages", async (c) => {
   });
   return c.json({
     assistantMessageId,
-    streamUrl: `/api/v1/chat/sessions/${sessionId}/stream?messageId=${assistantMessageId}`,
+    streamUrl: `/api/v1/chat/sessions/${sessionId}/stream`,
   });
 });
 
 chatRoutes.get("/sessions/:id/stream", async (c) => {
   const userId = c.get("authUser").id;
   const sessionId = c.req.param("id");
-  const messageId = c.req.query("messageId");
+  const messageId = c.req.header("X-Message-Id");
   if (!messageId) {
     throw new AppError("messageId is required", {
       code: chatErrorCodes.INVALID_CURSOR,

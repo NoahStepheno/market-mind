@@ -37,6 +37,7 @@ export type SseEventName =
   | "block_start"
   | "block_delta"
   | "block_end"
+  | "block_patch"
   | "message_end"
   | "error";
 
