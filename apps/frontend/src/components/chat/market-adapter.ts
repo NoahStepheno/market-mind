@@ -1,19 +1,10 @@
 import type { ChatModelAdapter, ChatModelRunOptions } from "@assistant-ui/react";
 import { sendMessage, streamSse } from "@/services/chat-api";
-
-let activeSessionId: string | null = null;
-
-export function setActiveSession(id: string | null) {
-  activeSessionId = id;
-}
-
-export function getActiveSessionId(): string | null {
-  return activeSessionId;
-}
+import { useChat } from "@/store/chat";
 
 export const marketChatAdapter: ChatModelAdapter = {
   async *run(options: ChatModelRunOptions) {
-    const sessionId = activeSessionId;
+    const sessionId = useChat.getState().currentSessionId;
     if (!sessionId) {
       yield {
         content: [{ type: "text", text: "请先创建一个聊天会话。" }],

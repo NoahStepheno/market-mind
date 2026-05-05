@@ -1,5 +1,5 @@
 # generated: 2026-05-04
-# last_updated: 2026-05-05
+# last_updated: 2026-05-06
 # project: market
 # project_key: NOKEY
 # tracking_system: file-system
@@ -52,8 +52,8 @@ development_status:
   epic-1-retrospective: done
 
   # Epic 2: Natural Language Alarm Creation
-  epic-2: backlog
-  2-1-chat-session-management-chat-page: backlog
+  epic-2: in-progress
+  2-1-chat-session-management-chat-page: done
   2-2-preset-alarm-templates-input-composer: backlog
   2-3-ai-natural-language-parsing-streaming-response: backlog
   2-4-structured-alarm-confirmation-card: backlog

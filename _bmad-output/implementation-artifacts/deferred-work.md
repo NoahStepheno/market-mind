@@ -44,3 +44,7 @@
 - Suspense wrapper without lazy — App.tsx wraps Routes in Suspense but no lazy loading exists. Dead overhead.
 - Active vs inactive nav link distinguishability — 1.6:1 contrast between states on black background. Design choice.
 - Mobile logout — PO决定添加到设置页面，留给后续Settings Story实现。不阻塞当前Story。
+
+## Deferred from: code review of 2-1-chat-session-management-chat-page (2026-05-05)
+
+- 首次加载时 createAndSelectSession + selectSession 产生冗余 API 调用 — 新会话刚创建后立刻又调用 selectSession 触发 loadMessages（空结果）。性能问题非 bug。`chat.tsx:20-28`
