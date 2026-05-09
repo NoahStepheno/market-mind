@@ -10,11 +10,15 @@
     "fmt": "vp fmt",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:p0": "playwright test --grep @P0",
+    "test:e2e:p1": "playwright test --grep \"@P0|@P1\"",
+    "test:api": "playwright test tests/e2e/api-health.spec.ts"
   },
   "dependencies": {
     "@assistant-ui/react": "^0.12.28",
     "@fontsource-variable/figtree": "^5.2.10",
+    "@market/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "radix-ui": "^1.4.3",
@@ -41,7 +45,8 @@
     "tailwindcss": "3.4.14",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "latest",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
   },
   "catalog": {
     "vite": "npm:@voidzero-dev/vite-plus-core@latest"

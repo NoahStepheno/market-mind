@@ -1,5 +1,5 @@
 # generated: 2026-05-04
-# last_updated: 2026-05-06
+# last_updated: 2026-05-07
 # project: market
 # project_key: NOKEY
 # tracking_system: file-system
@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: "2026-05-04"
-last_updated: "2026-05-05"
+last_updated: "2026-05-08"
 
 project: market
 project_key: NOKEY
@@ -54,8 +54,9 @@ development_status:
   # Epic 2: Natural Language Alarm Creation
   epic-2: in-progress
   2-1-chat-session-management-chat-page: done
-  2-2-preset-alarm-templates-input-composer: backlog
-  2-3-ai-natural-language-parsing-streaming-response: backlog
+  2-1-chat-page-bugfix: done
+  2-2-preset-alarm-templates-input-composer: done
+  2-3-ai-natural-language-parsing-streaming-response: review
   2-4-structured-alarm-confirmation-card: backlog
   2-5-alarm-persistence-creation-flow: backlog
   epic-2-retrospective: optional

@@ -4,9 +4,9 @@ import { useAuth } from "@/store/auth";
 import { logout as apiLogout } from "@/services/api";
 
 const navItems = [
-  { path: "/chat", label: "聊天" },
-  { path: "/alarms", label: "闹钟" },
-  { path: "/settings", label: "设置" },
+  { path: "/chat", label: "聊天", testId: "nav-home" },
+  { path: "/alarms", label: "闹钟", testId: "nav-alarms" },
+  { path: "/settings", label: "设置", testId: "nav-settings" },
 ] as const;
 
 function isActive(locationPath: string, itemPath: string): boolean {
@@ -45,9 +45,16 @@ export function GlobalNavigation() {
   return (
     <>
       {/* Desktop top bar (≥768px) */}
-      <header className="hidden md:flex sticky top-0 z-50 h-11 items-center bg-apple-surface-black px-apple-xl">
+      <header
+        data-testid="app-header"
+        className="hidden md:flex sticky top-0 z-50 h-11 items-center bg-apple-surface-black px-apple-xl"
+      >
         <div className="mx-auto flex w-full max-w-[980px] items-center justify-between">
-          <Link to="/chat" className="font-apple-display text-tagline text-apple-on-dark">
+          <Link
+            to="/chat"
+            data-testid="nav-home"
+            className="font-apple-display text-tagline text-apple-on-dark"
+          >
             market
           </Link>
 
@@ -56,6 +63,7 @@ export function GlobalNavigation() {
               <Link
                 key={item.path}
                 to={item.path}
+                data-testid={item.testId}
                 aria-current={isActive(location.pathname, item.path) ? "page" : undefined}
                 className={`text-fine-print transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apple-primary ${
                   isActive(location.pathname, item.path)
@@ -78,6 +86,7 @@ export function GlobalNavigation() {
             )}
             <button
               type="button"
+              data-testid="logout-button"
               onClick={handleLogout}
               className="rounded-apple-sm bg-apple-ink px-[15px] py-2 text-button-utility text-apple-on-dark transition-transform duration-100 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apple-primary"
             >
@@ -88,11 +97,15 @@ export function GlobalNavigation() {
       </header>
 
       {/* Mobile bottom tab bar (<768px) */}
-      <nav className="flex md:hidden fixed bottom-0 inset-x-0 z-50 h-11 items-center justify-around bg-apple-surface-black">
+      <nav
+        data-testid="mobile-nav"
+        className="flex md:hidden fixed bottom-0 inset-x-0 z-50 h-11 items-center justify-around bg-apple-surface-black"
+      >
         {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
+            data-testid={`mobile-${item.testId}`}
             aria-current={isActive(location.pathname, item.path) ? "page" : undefined}
             className={`flex flex-col items-center text-fine-print transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apple-primary ${
               isActive(location.pathname, item.path)

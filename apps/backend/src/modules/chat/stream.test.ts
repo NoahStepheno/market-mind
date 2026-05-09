@@ -11,6 +11,7 @@ const mockCreateUserAndAssistantPlaceholder = vi.fn();
 
 vi.mock("./repo.ts", () => ({
   getMessageForSession: (...args: unknown[]) => mockGetMessageForSession(...(args as [])),
+  listMessagesForSession: vi.fn(() => Promise.resolve([])),
   updateAssistantMessageDone: vi.fn(() => Promise.resolve({ id: "msg-1" })),
 }));
 
@@ -74,7 +75,7 @@ describe("GET /sessions/:id/stream", () => {
 
     expect(res.status).toBe(400);
     const body = await res.json();
-    expect(body.code).toBe("CHAT_INVALID_CURSOR");
+    expect(body.code).toBe("CHAT_MISSING_MESSAGE_ID");
   });
 
   test("returns 404 when message does not belong to user+session triple", async () => {

@@ -5,7 +5,7 @@ export type TextBlock = {
 
 export type UIBlock = {
   type: "ui";
-  component: "alarm_preview" | "alarm_editor";
+  component: "alarm_preview" | "alarm_editor" | "unsupported_response";
   props: Record<string, unknown>;
 };
 

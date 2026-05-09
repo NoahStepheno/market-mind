@@ -9,4 +9,7 @@ export default defineConfig({
   run: {
     cache: true,
   },
+  test: {
+    exclude: ["**/tests/e2e/**", "**/node_modules/**"],
+  },
 });

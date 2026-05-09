@@ -1,7 +1,7 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../support/merged-fixtures";
 
 test.describe("API Health Check", () => {
-  test("backend API responds to health endpoint", async ({ request }) => {
+  test("backend API responds to health endpoint @P0", async ({ request }) => {
     // Given: the backend API URL
     const apiUrl = process.env.API_URL || "http://localhost:3000";
 

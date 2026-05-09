@@ -4,10 +4,8 @@ import { z } from "zod";
 import { AppError } from "../../common/errors/app-error.ts";
 import { AuthVariables, requireAuth } from "../auth/middleware.ts";
 import { conditionGroupSchema } from "../alarms/condition-group.ts";
-import { buildChatContext } from "./context-policy.ts";
 import { chatErrorCodes } from "./errors.ts";
-import { chatMetrics } from "./metrics.ts";
-import { getMessageForSession } from "./repo.ts";
+import { listMessagesForSession, getMessageForSession } from "./repo.ts";
 import {
   createChatSession,
   createConfirmAlarmMessage,
@@ -106,35 +104,48 @@ chatRoutes.get("/sessions/:id/stream", async (c) => {
   const sessionId = c.req.param("id");
   const messageId = c.req.header("X-Message-Id");
   if (!messageId) {
-    throw new AppError("messageId is required", {
-      code: chatErrorCodes.INVALID_CURSOR,
+    throw new AppError("messageId 是必填项", {
+      code: chatErrorCodes.MISSING_MESSAGE_ID,
       statusCode: 400,
     });
   }
   const message = await getMessageForSession({ userId, sessionId, messageId });
   if (!message) {
-    throw new AppError("Message not found", {
+    throw new AppError("消息不存在", {
       code: chatErrorCodes.MESSAGE_NOT_FOUND,
       statusCode: 404,
     });
   }
-  const userPrompt = "继续"; // V1 fallback; can be replaced with full model context input
-  const context = buildChatContext({
-    systemPrompt: "你是市场助手，优先给出结构化建议。",
-    userLatest: userPrompt,
-    recentMessages: [],
-    contextBudget: 2_000,
-  });
-  if (context.truncated) {
-    chatMetrics.recordContextTruncated();
-  }
+  // Fetch actual user message from DB for the assistant placeholder
+  const recentRows = await listMessagesForSession({ userId, sessionId, limit: 10 });
+  const lastUserRow = [...recentRows].reverse().find((r) => r.role === "user");
+  const actualUserPrompt = (() => {
+    if (!lastUserRow) return "继续";
+    const blocks = lastUserRow.blocks as { type: string; content?: string }[];
+    const textBlock = blocks.find((b) => b.type === "text" && b.content);
+    return textBlock?.content ?? "继续";
+  })();
+
+  const recentMessages = recentRows
+    .filter((r) => r.id !== messageId)
+    .map((r) => {
+      const blocks = r.blocks as { type: string; content?: string }[];
+      const text = blocks
+        .filter((b) => b.type === "text" && b.content)
+        .map((b) => b.content!)
+        .join("");
+      return { role: r.role as "user" | "assistant", content: text };
+    })
+    .filter((m) => m.content);
+
   return streamAssistantMessage({
     c,
     userId,
     sessionId,
     messageId,
     requestId: c.get("requestId"),
-    userPrompt,
+    userPrompt: actualUserPrompt,
+    recentMessages,
   });
 });
 

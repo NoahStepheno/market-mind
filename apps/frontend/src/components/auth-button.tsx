@@ -19,6 +19,7 @@ export function LoginButton({ icon, label, href, className }: LoginButtonProps) 
     <button
       onClick={handleClick}
       disabled={loading}
+      data-testid="login-button"
       className={
         "flex w-full items-center justify-center gap-3 rounded-apple-pill " +
         "bg-apple-primary px-[22px] py-[11px] text-[17px] font-normal " +
